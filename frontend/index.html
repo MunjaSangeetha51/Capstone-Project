@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkillProof – Verified Skills & Career Readiness</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6d28d9;--p2:#7c3aed;--dark:#1b0f4f;--pink:#d946b8;--ink:#2a1a5e;--mut:#7c76a3;--card:#fff}
+*{box-sizing:border-box;margin:0;font-family:'Poppins',system-ui,sans-serif}
+body{display:flex;min-height:100vh;color:var(--ink);
+  background:
+   radial-gradient(900px 500px at 85% -10%,rgba(217,70,184,.18),transparent 60%),
+   radial-gradient(800px 600px at 20% 110%,rgba(109,40,217,.16),transparent 60%),
+   linear-gradient(160deg,#f6f2ff,#fbf7ff 50%,#f0eaff);background-attachment:fixed}
+aside{width:290px;background:linear-gradient(180deg,#1b0f4f,#2b1472);color:#fff;padding:26px 20px;position:sticky;top:0;height:100vh;flex-shrink:0;overflow:auto}
+.logo{font-size:30px;font-weight:800;display:flex;gap:10px;align-items:center}
+.tag{color:#c9bdf5;font-size:14px;margin:4px 0 26px}
+.menu-h{color:#a78bfa;font-size:14px;margin:12px 6px}
+nav a{display:flex;gap:12px;align-items:center;padding:13px 16px;margin:6px 0;border-radius:14px;cursor:pointer;font-weight:500;color:#e9e3ff;transition:.2s}
+nav a:hover{background:rgba(255,255,255,.08)}
+nav a.on{background:linear-gradient(90deg,#6d28d9,#9333ea);box-shadow:0 8px 20px rgba(124,58,237,.45);color:#fff}
+main{flex:1;padding:22px 34px 60px;min-width:0}
+.top{display:flex;justify-content:space-between;gap:16px;margin-bottom:22px}
+.search{flex:1;max-width:680px;background:#fff;border-radius:40px;padding:14px 22px;border:1px solid #e3dbff;color:var(--mut)}
+.pill{border:1.5px solid var(--p2);color:var(--p);background:#fff;border-radius:30px;padding:12px 24px;font-weight:500;cursor:pointer}
+.banner{background:linear-gradient(100deg,#4c1dbd,#8b2bc9 55%,#e040b4);color:#fff;border-radius:26px;padding:44px 52px;margin-bottom:26px;box-shadow:0 18px 40px rgba(109,40,217,.28);position:relative;overflow:hidden}
+.banner:after{content:"";position:absolute;right:-60px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.12)}
+.banner h1{font-size:40px;font-weight:700}.banner p{font-size:19px;margin-top:14px}.banner em{display:block;margin-top:22px;font-size:19px}
+.grid{display:grid;grid-template-columns:1fr 1.5fr 1.3fr;gap:24px}
+.card{background:var(--card);border-radius:24px;padding:26px 30px;box-shadow:0 10px 30px rgba(109,40,217,.08);border:1px solid #efe9ff;margin-bottom:24px}
+.card h3{font-size:24px;font-weight:700;color:var(--p);margin-bottom:18px}
+.btn{background:linear-gradient(90deg,#6d28d9,#9333ea);color:#fff;border:0;border-radius:14px;padding:12px 24px;font-weight:600;cursor:pointer;box-shadow:0 6px 16px rgba(124,58,237,.35)}
+.btn.o{background:#fff;color:var(--p);border:1.5px solid var(--p2);box-shadow:none}
+.avatar{width:96px;height:96px;border-radius:50%;background:#e4d6ff;color:var(--p);font-size:46px;font-weight:700;display:grid;place-items:center}
+.row{display:flex;gap:18px;align-items:center}.mut{color:var(--mut)}
+.ring{width:210px;height:210px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.ring div{width:156px;height:156px;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:44px;font-weight:700}
+.stats{display:grid;grid-template-columns:1fr 1fr;text-align:center;gap:8px;flex:1}
+.stats b{font-size:38px;color:var(--p);display:block}
+.bar{display:flex;align-items:center;gap:14px;margin:16px 0}.bar span:first-child{width:130px}
+.track{flex:1;height:12px;border-radius:8px;background:#efe9ff;overflow:hidden}.fill{height:100%;border-radius:8px;transition:width .8s}
+textarea,input{width:100%;border:1.5px solid #e0d6ff;border-radius:14px;padding:14px;font-size:15px;background:#fcfbff;outline:none}
+textarea:focus,input:focus{border-color:var(--p2)}textarea{min-height:170px;resize:vertical}
+label{font-weight:600;display:block;margin:14px 0 6px}
+.badge{padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600}
+.weak{background:#ffe3e3;color:#c92a2a}.medium{background:#fff0cc;color:#b36b00}.strong{background:#d3f9e0;color:#1b8a3f}
+.overclaimed{background:#ffe3e3;color:#c92a2a}.hidden{background:#d3f9e0;color:#1b8a3f}.unverified{background:#fff0cc;color:#b36b00}
+.item{border:1px solid #efe9ff;border-radius:16px;padding:16px 18px;margin:12px 0;background:#fdfcff}
+.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}
+.profile-grid label{font-size:14px}
+.profile-grid textarea{min-height:84px}
+.profile-entry h4{color:var(--ink);margin:8px 0}
+.section-note{margin:-8px 0 16px}
+.profile-actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.profile-photo{max-width:100%;margin-top:8px}
+.match-score{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.match-score strong{font-size:44px;color:var(--p)}
+.match-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.match-columns .item{margin:8px 0}
+.match-list{display:flex;flex-wrap:wrap;gap:8px}
+.match-list .chip{margin:0}
+.recommendation{padding:14px 18px;border-left:4px solid var(--p2);background:#f8f5ff;border-radius:10px;margin:10px 0}
+.table-wrap{overflow:auto;max-height:520px;border:1px solid #efe9ff;border-radius:12px}
+.survey-table{border-collapse:collapse;min-width:100%;font-size:13px}
+.survey-table th,.survey-table td{padding:10px 12px;border-bottom:1px solid #efe9ff;text-align:left;vertical-align:top;max-width:320px;overflow-wrap:anywhere}
+.survey-table th{position:sticky;top:0;background:#f5f0ff;color:var(--ink)}
+.survey-table tr:nth-child(even){background:#fcfbff}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.chip{display:inline-block;background:#f0eaff;color:var(--p);border-radius:20px;padding:4px 12px;font-size:13px;margin:3px 3px 0 0}
+.opt{display:block;padding:11px 16px;border:1.5px solid #e6defc;border-radius:12px;margin:8px 0;cursor:pointer}
+.opt:has(input:checked){border-color:var(--p2);background:#f3edff}.opt input{width:auto;margin-right:10px}
+.skills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.quiz-intro{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border-radius:16px;background:linear-gradient(110deg,#f5f0ff,#fff7fd);margin:14px 0 18px}
+.quiz-progress{height:8px;background:#efe9ff;border-radius:10px;overflow:hidden;margin:12px 0 18px}.quiz-progress span{display:block;height:100%;background:linear-gradient(90deg,#6d28d9,#d946b8);border-radius:10px}
+.quiz-question{border-left:4px solid var(--p2)}.quiz-question h4{margin:0 0 12px;color:var(--ink);font-size:16px}
+.quiz-result{border-color:#d8c8ff;background:#faf7ff}.quiz-result h4{color:var(--p);margin-bottom:8px}.quiz-topic{min-width:160px;flex:1}
+.file-picker{display:block;border:1.5px dashed #c9bdf5;border-radius:14px;padding:18px;background:#fcfbff;cursor:pointer}
+.file-picker input{border:0;padding:10px 0 0;background:transparent}
+.empty{padding:30px;text-align:center;color:var(--mut)}
+.toast{position:fixed;bottom:24px;right:24px;background:#2a1a5e;color:#fff;padding:14px 22px;border-radius:14px;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1}
+.roadmap-page{max-width:1500px;margin:0 auto}.roadmap-hero{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:28px;border-radius:22px;background:linear-gradient(115deg,#2d176f,#7032c9 60%,#c13eb1);color:#fff}.roadmap-hero h2{font-size:30px;margin:4px 0 8px}.roadmap-hero p{max-width:660px;color:#eee6ff}.roadmap-eyebrow{font-size:12px;letter-spacing:.15em;font-weight:700;color:#e3d5ff}.roadmap-counts{display:flex;gap:10px;flex-wrap:wrap}.roadmap-counts div{min-width:105px;padding:12px 16px;border-radius:15px;background:#ffffff20;text-align:center}.roadmap-counts b,.roadmap-counts span{display:block}.roadmap-counts b{font-size:28px}.roadmap-counts span{font-size:12px}.roadmap-note{display:flex;gap:12px;margin:16px 0;padding:14px 18px;border-radius:14px;background:#f3edff;color:var(--ink);font-size:13px}.roadmap-note b{white-space:nowrap;color:var(--p)}.roadmap-section{padding:22px 0;border-top:1px solid #eee8fa}.roadmap-section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}.roadmap-section-heading h3{margin:0 0 4px}.roadmap-section-heading p{font-size:13px}.roadmap-presets,.roadmap-filters{margin:14px 0}.roadmap-filter{padding:9px 15px;font-size:13px}.roadmap-slider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px}.roadmap-skill{margin:0;padding:12px 14px;border:1px solid #eee8fa;border-radius:12px;background:#fdfcff}.roadmap-skill span{display:flex;align-items:center;justify-content:space-between;font-size:13px}.roadmap-skill output{color:var(--p);font-weight:700}.roadmap-skill input[type=range]{padding:0;margin:10px 0 0;height:8px;accent-color:var(--p2);background:transparent}.roadmap-leverage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.roadmap-leverage-row{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid #eee8fa;border-radius:13px;background:#fdfcff}.roadmap-rank{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#eee5ff;color:var(--p);font-weight:700}.roadmap-leverage-copy{flex:1}.roadmap-leverage-copy b,.roadmap-leverage-copy small{display:block}.roadmap-leverage-copy small{color:var(--mut);font-size:12px}.roadmap-leverage-row strong{color:#16865b;font-size:18px}.roadmap-simulation{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 18px;margin:14px 0}.roadmap-sim-row{display:flex;align-items:center;gap:8px;font-size:12px}.roadmap-sim-row span{width:125px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.roadmap-sim-row .quiz-progress{flex:1;margin:0}.roadmap-role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.roadmap-role{text-align:left;padding:14px;border:1px solid #eee8fa;border-radius:14px;background:#fff;color:var(--ink);cursor:pointer}.roadmap-role:hover,.roadmap-role.selected{border-color:var(--p2);box-shadow:0 5px 18px #6d28d91a}.roadmap-role.selected{background:#faf7ff}.roadmap-role-top{display:flex;justify-content:space-between;gap:8px}.roadmap-role-top strong{color:var(--p)}.roadmap-role-meta{font-size:11px;color:var(--mut);margin:6px 0}.roadmap-role .quiz-progress{margin:9px 0 0;height:6px}.roadmap-detail{margin-top:16px;padding:18px;border:1px solid #e7dcff;border-radius:16px;background:#fcfaff}.roadmap-detail-title{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:6px}.roadmap-detail-title h3{margin:3px 0 10px}.roadmap-fit{padding:8px 12px;background:#eee5ff;color:var(--p);border-radius:999px;font-weight:700}.roadmap-requirement{display:grid;grid-template-columns:150px 1fr 60px;align-items:center;gap:12px;margin:12px 0;font-size:13px}.roadmap-requirement .quiz-progress{margin:0}.roadmap-job-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.roadmap-job{padding:14px 16px;border:1px solid #eee8fa;border-radius:14px;background:#fff}.roadmap-job-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.roadmap-job h4{font-size:14px}.roadmap-job p{font-size:12px;margin-top:6px}
+@media(max-width:1100px){.roadmap-slider-grid,.roadmap-role-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.roadmap-simulation{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.roadmap-slider-grid,.roadmap-role-grid,.roadmap-leverage,.roadmap-simulation,.roadmap-job-list{grid-template-columns:1fr}.roadmap-hero{padding:20px}.roadmap-counts{width:100%}.roadmap-counts div{flex:1}.roadmap-note{display:block}.roadmap-note span{display:block;margin-top:5px}.roadmap-requirement{grid-template-columns:100px 1fr 52px}}
+@media(max-width:1100px){body{display:block}aside{width:100%;height:auto;position:relative;padding:14px 20px;overflow:visible}.logo{font-size:24px}.tag,.menu-h{display:none}nav{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}nav a{padding:9px 10px;margin:0;font-size:13px}main{padding:16px}.grid,.cols,.profile-grid,.match-columns{grid-template-columns:1fr}}
+.gap-embed-card{padding:0!important;overflow:hidden;background:#f3f6f4}.gap-embed-card iframe{display:block;width:100%;min-height:1100px;height:1800px;border:0;background:#f3f6f4}
+@media(max-width:700px){.gap-embed-card iframe{min-height:1500px;height:2200px}}
+</style>
+</head>
+<body>
+<aside>
+  <div class="logo">🎓 SkillProof</div>
+  <div class="tag">Prove • Grow • Achieve</div>
+  <div class="menu-h">MAIN MENU</div>
+  <nav id="nav"></nav>
+</aside>
+<main>
+  <div class="top"><div class="search">🔍 Search skills, internships...</div>
+    <button class="pill" onclick="go('profile')">👤 Student Profile</button></div>
+  <div id="view"></div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const COLORS = ['#7c3aed','#3b9ae8','#f5a623','#2a9d8f','#e0559e','#ef6351'];
+const PAGES = [['dashboard','🏠','Dashboard'],['profile','👤','My Profile'],['resume','📄','Resume & GitHub'],
+  ['jobmatch','🎯','Resume / Job Match'],
+  ['surveydata','📊','Survey Data File'],
+  ['verify','✓','Skill Verification'],['mismatch','⚠','Mismatch Report'],['gap','📊','Skill Gap Analysis'],
+  ['matcher','💼','Internship Matcher'],['leverage','🏆','Skill Leverage'],['roadmap','🎯','Career Roadmap']];
+const QUIZ_SKILLS = ['Python','Java','SQL','Excel','Tableau','Power BI','HTML/CSS','JavaScript','Machine Learning','Node.js','SEO','Android','Flutter','Canva','Social Media','Graphic Design','Digital Marketing','Figma','UI/UX Design','Photoshop','Video Editing','React','Git','English','MongoDB'];
+const SAMPLE = `Skills: Python, Java, SQL, HTML, CSS, JavaScript, Machine Learning
+Built a student attendance tracker using Python and Flask with SQLite, serving 200+ records.
+Developed a responsive portfolio website using HTML, CSS and Bootstrap and deployed it on GitHub Pages (https://github.com/me/portfolio).
+Trained a scikit-learn classifier for house price prediction and improved accuracy by 12%.
+Completed a college Java assignment on inheritance.`;
+
+const emptyProfile = () => ({
+  fullName:'Student Name',email:'',phone:'',photoUrl:'',college:'',degree:'',specialization:'',currentYear:'',
+  semester:'',graduationYear:'',registrationNumber:'',branch:'',cgpa:'',previousGrades:'',
+  coursework:'',academicAchievements:'',programmingLanguages:'',webDevelopment:'',databaseSkills:'',
+  aiMlSkills:'',dataAnalyticsSkills:'',frameworksLibraries:'',developmentTools:'',proficiencyLevels:'',
+  claimedSkills:'',projects:[],internships:[],certifications:[],awards:'',
+  linkedinUrl:'',githubUrl:'',portfolioUrl:'',leetcodeUrl:'',hackerrankUrl:'',
+  interestedRoles:'',preferredDomains:'',preferredLocations:'',employmentType:'',
+  expectedStipend:'',workMode:'',careerGoals:''
+});
+const PROFILE_FIELDS = {
+  personal:[['fullName','Student full name'],['email','Email address','email'],['phone','Phone number (optional)','tel'],['photoUrl','Profile photo URL (optional)','url'],['college','College / University'],['degree','Degree'],['specialization','Specialization'],['currentYear','Current year'],['semester','Current semester'],['graduationYear','Graduation year','number']],
+  academic:[['registrationNumber','University registration number'],['branch','Branch'],['cgpa','Current CGPA (optional)','number'],['previousGrades','Previous semester grades (optional)','textarea'],['coursework','Relevant coursework','textarea'],['academicAchievements','Academic achievements','textarea']],
+  technical:[['programmingLanguages','Programming languages','textarea'],['webDevelopment','Web development','textarea'],['databaseSkills','Database skills','textarea'],['aiMlSkills','AI and Machine Learning','textarea'],['dataAnalyticsSkills','Data Analytics','textarea'],['frameworksLibraries','Frameworks and libraries','textarea'],['developmentTools','Development tools','textarea'],['proficiencyLevels','Skill proficiency levels (skill: level)','textarea'],['claimedSkills','Additional claimed skills','textarea']],
+  links:[['linkedinUrl','LinkedIn profile','url'],['githubUrl','GitHub profile','url'],['portfolioUrl','Portfolio website','url'],['leetcodeUrl','LeetCode profile (optional)','url'],['hackerrankUrl','HackerRank profile (optional)','url']],
+  career:[['interestedRoles','Interested job roles','textarea'],['preferredDomains','Preferred domains','textarea'],['preferredLocations','Preferred locations','textarea'],['employmentType','Internship / Full-time'],['expectedStipend','Expected stipend (optional)'],['workMode','Work mode (Remote / On-site / Hybrid)'],['careerGoals','Career goals','textarea']]
+};
+const INTERNSHIP_HEADERS = ['Company Name','Internship Title','Required Skills','Job Description','Location','Work Mode','Stipend','Apply URL','Posted Date','Deadline','Status','Source'];
+const VERIFIED_INTERNSHIPS = [
+  {
+    company:'Nexicat',title:'Software Development Intern',
+    requiredSkills:'Java, React, React Native, Spring Boot',
+    jobDescription:'Build backend APIs and business logic, contribute to web and mobile features, and test and debug a business-operations platform. The listing requires Internshala sign-in to continue applying. Public listing checked 2026-11-11.',
+    location:'Remote (company profile lists Bengaluru)',workMode:'Remote',stipend:'INR 5,000/month',
+    applyUrl:'https://internshala.com/internship/detail/work-from-home-software-development-internship-at-nexicat1794363699',
+    postedDate:'2026-11-11',deadline:'2026-12-11',status:'Active - verify availability',
+    source:'Internshala (checked 2026-11-11)'
+  },
+  {
+    company:'Qubixo',title:'Python Development Intern',
+    requiredSkills:'HTML, CSS, Python, Django, Machine Learning, REST APIs, Flask',
+    jobDescription:'Build web-app features, develop REST APIs, apply machine learning, and troubleshoot issues. The listing requires Internshala sign-in to continue applying. Public listing checked 2026-11-11.',
+    location:'Remote (company profile lists Bengaluru)',workMode:'Remote',
+    stipend:'INR 12,000-24,000/month (fixed pay plus incentives per listing)',
+    applyUrl:'https://internshala.com/internship/detail/work-from-home-python-development-internship-at-qubixo1794374551',
+    postedDate:'2026-11-11',deadline:'2026-12-11',status:'Active - verify availability',
+    source:'Internshala (checked 2026-11-11)'
+  },
+  {
+    company:'PayPal',title:'Software Engineer Intern',
+    requiredSkills:'HTTP, HTML/DOM, JavaScript, CSS, AJAX, Node.js, Java, C++, Python, web services, REST APIs',
+    jobDescription:'Develop and test scalable front- or back-end software, collaborate across teams, and work on production systems. The description says applicants should graduate in 2028 but also includes the Intern2027 tag; confirm eligibility with PayPal. The public search result showed actively hiring, but the detail page listed no deadline. Public listing checked 2026-11-11.',
+    location:'Chennai, Tamil Nadu',workMode:'Hybrid (3 office days; other 2 may be office or home)',
+    stipend:'Not listed',
+    applyUrl:'https://in.linkedin.com/jobs/view/software-engineer-intern-at-paypal-4488841929',
+    postedDate:'2026-11-09',deadline:'',status:'Active - verify availability and eligibility',
+    source:'LinkedIn (checked 2026-11-11)'
+  }
+];
+const PROFILE_ENTRIES = {
+  projects:{title:'Project',fields:[['title','Project title'],['description','Project description','textarea'],['problemStatement','Problem statement','textarea'],['technologies','Technologies used','textarea'],['languages','Programming languages'],['category','Project category'],['teamType','Individual / Team project'],['role','Student role'],['githubUrl','GitHub repository link','url'],['liveUrl','Live project link','url'],['demoUrl','Project demo link','url'],['status','Project status'],['outcomes','Key outcomes','textarea']]},
+  internships:{title:'Internship',fields:[['company','Company name'],['role','Internship role'],['domain','Internship domain'],['startDate','Start date','date'],['endDate','End date','date'],['workMode','Remote / On-site'],['skillsLearned','Skills learned','textarea'],['responsibilities','Responsibilities','textarea'],['projectsCompleted','Projects completed','textarea'],['certificateUrl','Internship certificate URL','url']]},
+  certifications:{title:'Certification',fields:[['name','Certification name'],['organization','Issuing organization'],['issueDate','Issue date','date'],['certificateId','Certificate ID (optional)'],['verificationUrl','Certificate verification URL','url']]}
+};
+const S = {name:'Student Name',branch:'',profile:emptyProfile(),resumeFile:'',githubFile:'',linkedinFile:'',parsed:[],evidence:{},quiz:{},subs:{},quizSeen:{},res:{},customSkills:[],customSkillSelected:'',customQuizBanks:{},customQuizResults:{},mysqlConfigured:false,jobDescription:'',jobMatch:null,surveyData:null,surveyError:'',internshipReportId:null,importedInternships:[],internshipImportFile:'',internshipImportError:'',internshipDbError:'',A:null,tab:'dashboard',qs:null,roadmapSkills:null,gapProfile:null};
+const STORE_KEY = 'skillproof-state-v1';
+const INTERNSHIP_SKILLS = {
+  'Python':['python','pandas','numpy','flask','django'],
+  'Java':['java','spring','spring boot','jvm'],
+  'SQL':['sql','mysql','postgresql','sqlite','postgres'],
+  'HTML/CSS':['html','css','bootstrap','tailwind'],
+  'JavaScript':['javascript','react','node.js','nodejs','typescript'],
+  'Machine Learning':['machine learning','scikit-learn','sklearn','tensorflow','pytorch','neural network','deep learning']
+};
+const JOB_STOPWORDS = new Set(['about','able','across','also','and','any','are','as','at','be','but','can','candidate','company','could','day','desired','each','experience','for','from','good','have','help','including','into','is','job','join','knowledge','looking','make','more','must','our','other','people','plus','position','preferred','provide','role','should','skill','skills','strong','such','team','that','the','their','them','they','this','those','through','time','to','use','using','various','want','we','well','what','when','who','will','with','work','working','you','your','year']);
+const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+function profileField([key,label,type='text']){
+  const value=esc(S.profile[key]);
+  return `<label>${esc(label)}${type==='textarea'
+    ?`<textarea data-profile-field="${key}" placeholder="Enter ${esc(label.toLowerCase())}">${value}</textarea>`
+    :`<input data-profile-field="${key}" type="${type}" value="${value}" placeholder="Enter ${esc(label.toLowerCase())}">`}</label>`;
+}
+function customQuizEditor(skill){
+  const saved=S.customQuizBanks?.[skill]||[];
+  const questions=Array.from({length:4},(_,index)=>{
+    const q=saved[index]||{};
+    return `<fieldset class="item quiz-question" data-custom-q="${index}"><legend>Question ${index+1}</legend>
+      <label>Concept<input data-cq="sub" maxlength="50" value="${esc(q.sub||'')}" placeholder="e.g. User research"></label>
+      <label>Question<input data-cq="q" maxlength="300" value="${esc(q.q||'')}" placeholder="Write a question about ${esc(skill)}"></label>
+      ${[0,1,2,3].map(option=>`<label>Option ${String.fromCharCode(65+option)}<input data-cq-option="${option}" maxlength="180" value="${esc(q.options?.[option]||'')}" placeholder="Answer choice"></label>`).join('')}
+      <label>Correct answer<select data-cq="a">${[0,1,2,3].map(option=>`<option value="${option}" ${Number(q.a||0)===option?'selected':''}>Option ${String.fromCharCode(65+option)}</option>`).join('')}</select></label>
+    </fieldset>`;
+  }).join('');
+  return `<section class="item"><h4>${esc(skill)} · Create a four-question quiz</h4><p class="mut">Write questions and answer keys for practice. Because you author the answers, this score will not count as independent verification or affect job matching.</p><form onsubmit="saveCustomSkillQuiz(event,'${esc(skill)}')">${questions}<button class="btn" type="submit">Save quiz</button> <button class="btn o" type="button" onclick="removeCustomVerificationSkill('${esc(skill)}')">Remove skill</button></form></section>`;
+}
+function toggleInternshipReport(postingId){
+  S.internshipReportId=S.internshipReportId===postingId?null:postingId;
+  render();
+}
+function profileEntries(group){
+  const definition=PROFILE_ENTRIES[group], entries=S.profile[group]?.length?S.profile[group]:[{}];
+  return `${entries.map((entry,index)=>`<div class="item profile-entry" data-profile-group="${group}">
+    <h4>${definition.title} ${index+1}</h4>
+    <div class="profile-grid">${definition.fields.map(([key,label,type='text'])=>type==='textarea'
+      ?`<label>${esc(label)}<textarea data-entry-field="${key}" placeholder="Enter ${esc(label.toLowerCase())}">${esc(entry[key])}</textarea></label>`
+      :`<label>${esc(label)}<input data-entry-field="${key}" type="${type}" value="${esc(entry[key])}" placeholder="Enter ${esc(label.toLowerCase())}"></label>`).join('')}</div>
+    <button class="btn o" type="button" onclick="removeProfileEntry('${group}',${index})">Remove ${definition.title.toLowerCase()}</button>
+  </div>`).join('')}
+  <button class="btn o" type="button" onclick="addProfileEntry('${group}')">+ Add ${definition.title.toLowerCase()}</button>`;
+}
+function syncProfileForm(){
+  const profile={...S.profile};
+  document.querySelectorAll('[data-profile-field]').forEach(field=>{profile[field.dataset.profileField]=field.value.trim()});
+  for(const [group] of Object.entries(PROFILE_ENTRIES)){
+    profile[group]=[...document.querySelectorAll(`[data-profile-group="${group}"]`)].map(entry=>{
+      const record={};
+      entry.querySelectorAll('[data-entry-field]').forEach(field=>{record[field.dataset.entryField]=field.value.trim()});
+      return record;
+    }).filter(record=>Object.values(record).some(Boolean));
+  }
+  S.profile=profile;
+}
+function addProfileEntry(group){
+  syncProfileForm();
+  S.profile[group].push({});
+  render();
+}
+function removeProfileEntry(group,index){
+  syncProfileForm();
+  S.profile[group].splice(index,1);
+  render();
+}
+function profilePhoto(){
+  try{
+    const url=new URL(S.profile.photoUrl);
+    return url.protocol==='https:'?`<img class="avatar profile-photo" src="${esc(url.href)}" alt="Profile photo">`:'';
+  }catch{return ''}
+}
+
+async function api(path, body, method=body?'POST':'GET'){
+  const isForm = body instanceof FormData;
+  const token=localStorage.getItem('skillproof-token');
+  const options={method,headers:{...(token?{Authorization:`Bearer ${token}`}:{})}};
+  if(body){if(!isForm)options.headers['Content-Type']='application/json';options.body=isForm?body:JSON.stringify(body)}
+  const r = await fetch('/api/'+path, options);
+  const data = await r.json();
+  if(!r.ok){
+    const detail=Array.isArray(data.detail)?data.detail.map(item=>item.msg||'Invalid value').join('. '):data.detail;
+    throw new Error(detail || `Request failed (${r.status})`);
+  }
+  return data;
+}
+function persist(){
+  try{
+    const savedState={name:S.name,branch:S.branch,profile:S.profile,resumeFile:S.resumeFile,githubFile:S.githubFile,linkedinFile:S.linkedinFile,
+      parsed:S.parsed,evidence:S.evidence,quiz:S.quiz,subs:S.subs,quizSeen:S.quizSeen,res:S.res,customSkills:S.customSkills,
+      customQuizBanks:S.customQuizBanks,customQuizResults:S.customQuizResults,
+      importedInternships:S.importedInternships,internshipImportFile:S.internshipImportFile,roadmapSkills:S.roadmapSkills,gapProfile:S.gapProfile,
+      leverageScenario:S.leverageScenario,leverageMode:S.leverageMode};
+    const serialized=JSON.stringify(savedState);
+    if(serialized.length>2_000_000)throw new Error('Saved profile and internship data exceed the browser storage limit. Remove some listings and re-import.');
+    localStorage.setItem(STORE_KEY,serialized);
+    return true;
+  }catch(error){console.error('Could not save SkillProof data',error);toast(error.message||'Could not save this session in browser storage');return false;}
+}
+function restore(){
+  const saved=localStorage.getItem(STORE_KEY);
+  if(!saved)return;
+  const parsed=JSON.parse(saved);
+  if(parsed&&typeof parsed==='object'){
+    Object.assign(S,parsed);
+    S.profile={...emptyProfile(),...(parsed.profile||{})};
+    S.importedInternships=Array.isArray(parsed.importedInternships)?parsed.importedInternships:[];
+    S.quizSeen=parsed.quizSeen&&typeof parsed.quizSeen==='object'?parsed.quizSeen:{};
+    S.customSkills=Array.isArray(parsed.customSkills)?parsed.customSkills.filter(skill=>typeof skill==='string').slice(0,30):[];
+    S.customQuizBanks=parsed.customQuizBanks&&typeof parsed.customQuizBanks==='object'?parsed.customQuizBanks:{};
+    S.customQuizResults=parsed.customQuizResults&&typeof parsed.customQuizResults==='object'?parsed.customQuizResults:{};
+    S.internshipImportFile=typeof parsed.internshipImportFile==='string'?parsed.internshipImportFile:'';
+    S.linkedinFile=typeof parsed.linkedinFile==='string'?parsed.linkedinFile:'';
+    S.roadmapSkills=parsed.roadmapSkills&&typeof parsed.roadmapSkills==='object'?parsed.roadmapSkills:null;
+    S.gapProfile=parsed.gapProfile&&typeof parsed.gapProfile==='object'?parsed.gapProfile:null;
+    S.leverageScenario=parsed.leverageScenario&&typeof parsed.leverageScenario==='object'?parsed.leverageScenario:null;
+    S.leverageMode=parsed.leverageMode==='quiz'?'quiz':'sample';
+    if(!parsed.profile){S.profile.fullName=parsed.name||'Student Name';S.profile.branch=parsed.branch||'';}
+  }
+}
+async function refresh(){
+  const supported=new Set(QUIZ_SKILLS);
+  const evidence=Object.fromEntries(Object.entries(S.evidence).filter(([skill])=>supported.has(skill)));
+  const quiz=Object.fromEntries(Object.entries(S.quiz).filter(([skill])=>supported.has(skill)));
+  S.A = await api('analyze',{evidence,quiz}); persist();
+}
+async function act(action){try{await action}catch(error){console.error(error);toast(error.message||'Something went wrong');}}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function go(p){S.tab=p;S.qs=null;render();if(p==='matcher')act(loadMysqlInternships())}
+function bar(label,val,i){return `<div class="bar"><span>${label}</span><div class="track"><div class="fill" style="width:${val}%;background:${COLORS[i%6]}"></div></div><b>${val}%</b></div>`}
+const A0 = () => S.A || {verified:{},mismatches:[],ready:[],stretch:[],notyet:[],readiness:0,leverage:[],simulation:[],roles:[],skills_verified:0};
+
+function internshipReport(posting){
+  const requirements=Object.entries(posting.req||{});
+  const evidenceFor=skill=>Number(S.evidence[skill])||0;
+  const quizFor=skill=>Number.isFinite(S.quiz[skill])?S.quiz[skill]:null;
+  const correctedFor=skill=>{
+    const quiz=quizFor(skill), evidence=evidenceFor(skill);
+    return quiz===null?Math.round(.4*evidence):Math.round(.7*quiz+.3*evidence);
+  };
+  const matched=requirements.filter(([skill,need])=>correctedFor(skill)>=need).length;
+  const coverage=requirements.length?Math.round(100*requirements.reduce((total,[skill,need])=>total+Math.min(correctedFor(skill)/need,1),0)/requirements.length):0;
+  const detail=requirements.map(([skill,need])=>{
+    const evidence=evidenceFor(skill),quiz=quizFor(skill),corrected=correctedFor(skill);
+    const status=corrected>=need
+      ?`Requirement met${quiz===null?' · quiz not taken':' · quiz verified'}`
+      :quiz!==null?'Quiz taken · below threshold':evidence?'Resume claim · not quiz-verified':'Not evidenced yet';
+    return `<div class="item"><div class="row" style="justify-content:space-between"><b>${esc(skill)}</b><span class="badge ${corrected>=need?'strong':quiz!==null?'medium':'weak'}">${esc(status)}</span></div>
+      <div class="track" style="margin:10px 0"><div class="fill" style="width:${Math.min(100,Math.round(corrected/need*100))}%;background:${corrected>=need?'#2a9d8f':'#f5a623'}"></div></div>
+      <small class="mut">Posting threshold ${need}/100 · Resume evidence ${evidence}/100 · ${quiz===null?'No quiz score':`Quiz ${quiz}/100`} · Trust-corrected level ${corrected}/100</small>
+      ${quiz===null?`<p><button class="btn o" onclick="act(openSkillQuiz('${esc(skill)}'))">Take ${esc(skill)} quiz</button></p>`:''}</div>`;
+  }).join('');
+  const suggestions=[];
+  if(requirements.some(([skill])=>quizFor(skill)===null))suggestions.push('Verify the required skills with SkillProof quizzes. Unverified resume claims are discounted.');
+  if(requirements.some(([skill])=>evidenceFor(skill)===0))suggestions.push('Add accurate project or experience examples for skills that are not evidenced in your resume or project file.');
+  if(matched<requirements.length){
+    const below=requirements.filter(([skill,need])=>correctedFor(skill)<need).map(([skill])=>skill);
+    suggestions.push(`Focus next on ${below.join(', ')} to reach this posting's listed skill thresholds.`);
+  }
+  if(!suggestions.length)suggestions.push('Your current trust-corrected profile meets this sample posting’s listed skill thresholds. Review each resume claim before applying.');
+  return `<div class="item"><div class="row" style="justify-content:space-between;flex-wrap:wrap"><h4>SkillProof match report</h4><b>${coverage}% required-skill coverage</b></div>
+    <p class="mut">Based on this sample posting’s listed skill thresholds, your resume evidence, and quiz scores. This is not an employer ATS score or hiring prediction.</p>
+    <h4 style="margin-top:14px">Requirement-by-requirement analysis</h4>${detail||'<p class="mut">This posting has no skill requirements to compare.</p>'}
+    <h4 style="margin-top:14px">Recommended next steps</h4>${suggestions.map(text=>`<p class="recommendation">${esc(text)}</p>`).join('')}
+  </div>`;
+}
+
+function importedInternshipReport(posting){
+  const metrics=importedInternshipMetrics(posting);
+  const {skillAnalysis,skillScore,score,keywordScore,matchedKeywords,topKeywords}=metrics;
+  const missing=skillAnalysis.filter(item=>!item.meets);
+  const suggestions=[];
+  if(!skillAnalysis.length)suggestions.push('No supported SkillProof skills were recognized in the required-skills field. Review the requirements manually; no skill score is available.');
+  else{
+    const unverified=skillAnalysis.filter(item=>item.quiz===null);
+    if(unverified.length)suggestions.push(`Take SkillProof quizzes for ${unverified.map(item=>item.skill).join(', ')} to verify these claims.`);
+    if(missing.length)suggestions.push(`Build evidence or improve verified proficiency in ${missing.map(item=>item.skill).join(', ')} to meet the baseline.`);
+    if(!missing.length&&!unverified.length)suggestions.push('Your verified profile meets the imported listing’s supported-skill baseline. Review the complete description before applying.');
+  }
+  if(posting.status&&!/active|open|accepting/i.test(posting.status))suggestions.push(`Check listing status (“${posting.status}”) and deadline before applying.`);
+  const details=skillAnalysis.map(item=>`<div class="item"><div class="row" style="justify-content:space-between"><b>${esc(item.skill)}</b><span class="badge ${item.meets?'strong':item.quiz!==null?'medium':'weak'}">${item.meets?'Baseline met':item.quiz===null?'Unverified claim':'Below baseline'}</span></div>
+    <div class="track" style="margin:10px 0"><div class="fill" style="width:${Math.min(100,Math.round(item.corrected/60*100))}%;background:${item.meets?'#2a9d8f':'#f5a623'}"></div></div>
+    <small class="mut">Baseline 60/100 · Evidence ${item.evidence}/100 · ${item.quiz===null?'No quiz score':`Quiz ${item.quiz}/100`} · Corrected level ${item.corrected}/100</small>
+    ${item.quiz===null?`<p><button class="btn o" type="button" onclick="act(openSkillQuiz('${esc(item.skill)}'))">Take ${esc(item.skill)} quiz</button></p>`:''}</div>`).join('');
+  const jobUrl=safeExternalUrl(posting.applyUrl);
+  return `<div class="item"><div class="row" style="justify-content:space-between;flex-wrap:wrap"><h4>SkillProof match report</h4><b>${score}% estimated fit</b></div>
+    <p class="mut">Heuristic using your saved evidence, quiz scores, and exact keyword overlap. Not an ATS ranking or hiring prediction. Supported skills use a 60/100 baseline.</p>
+    <div class="match-columns"><div><h4>Required skill analysis</h4>${details||'<p class="mut">No supported skills found; manually review the listing requirements.</p>'}</div>
+      <div class="item"><h4>Listing details</h4><p><b>Required skills:</b> ${esc(posting.requiredSkills)}</p><p><b>Company:</b> ${esc(posting.company)}</p><p><b>Location:</b> ${esc(posting.location||'Not listed')}</p>
+        <p><b>Work mode:</b> ${esc(posting.workMode||'Not listed')}</p><p><b>Stipend:</b> ${esc(posting.stipend||'Not listed')}</p>
+        <p><b>Posted:</b> ${esc(posting.postedDate||'Not listed')} · <b>Deadline:</b> ${esc(posting.deadline||'Not listed')}</p>
+        <p><b>Status:</b> ${esc(posting.status||'Not provided')} · <b>Source:</b> ${esc(posting.source||'Not provided')}</p>
+        ${jobUrl?`<p><a href="${esc(jobUrl)}" target="_blank" rel="noopener noreferrer">Open application listing ↗</a></p>`:''}
+      </div></div>
+    <div class="item"><h4>Job description</h4><p style="white-space:pre-wrap">${esc(posting.jobDescription||'No description provided.')}</p>
+      <h4 style="margin-top:12px">Keyword overlap · ${keywordScore}%</h4><p class="mut">Exact keyword check against saved evidence snippets and profile project details.</p>
+      <p><b>Found:</b> ${esc(matchedKeywords.join(', ')||'None')}</p><p><b>Not found:</b> ${esc(topKeywords.filter(term=>!matchedKeywords.includes(term)).join(', ')||'None')}</p>
+    </div><h4>Recommended next steps</h4>${suggestions.map(text=>`<p class="recommendation">${esc(text)}</p>`).join('')}
+  </div>`;
+}
+
+function importedInternshipMetrics(posting){
+  const skills=Object.keys(INTERNSHIP_SKILLS).filter(skill=>matchesSkill(posting.requiredSkills,skill));
+  const evidenceCorpus=[
+    ...S.parsed.flatMap(item=>[item.skill,...(item.context||[])]),
+    S.profile.programmingLanguages,S.profile.webDevelopment,S.profile.databaseSkills,
+    S.profile.aiMlSkills,S.profile.dataAnalyticsSkills,S.profile.frameworksLibraries,
+    ...(S.profile.projects||[]).flatMap(project=>[project.title,project.description,project.technologies,project.languages,project.outcomes])
+  ].filter(Boolean).join(' ').toLowerCase();
+  const termCounts=text=>{
+    const terms=(String(text||'').toLowerCase().match(/[a-z][a-z0-9+#.]{2,}/g)||[])
+      .map(term=>term.replace(/\.+$/,''))
+      .filter(term=>term&&!JOB_STOPWORDS.has(term));
+    return terms.reduce((counts,term)=>{counts[term]=(counts[term]||0)+1;return counts},{});
+  };
+  const jobTerms=termCounts(posting.jobDescription);
+  const topKeywords=Object.keys(jobTerms).sort((a,b)=>jobTerms[b]-jobTerms[a]||a.localeCompare(b)).slice(0,20);
+  const matchedKeywords=topKeywords.filter(term=>containsTerm(evidenceCorpus,term));
+  const keywordScore=topKeywords.length?Math.round(100*matchedKeywords.length/topKeywords.length):0;
+  const skillAnalysis=skills.map(skill=>{
+    const evidence=Number(S.evidence[skill])||0;
+    const quiz=Number.isFinite(S.quiz[skill])?S.quiz[skill]:null;
+    const corrected=quiz===null?Math.round(.4*evidence):Math.round(.7*quiz+.3*evidence);
+    return {skill,evidence,quiz,corrected,meets:corrected>=60};
+  });
+  const skillScore=skillAnalysis.length
+    ?Math.round(skillAnalysis.reduce((total,item)=>total+Math.min(item.corrected/60,1),0)*100/skillAnalysis.length)
+    :null;
+  const score=skillScore===null?keywordScore:Math.round(.75*skillScore+.25*keywordScore);
+  return {skillAnalysis,skillScore,score,keywordScore,matchedKeywords,topKeywords};
+}
+
+function matchesSkill(text,skill){
+  const value=String(text||'').toLowerCase();
+  return INTERNSHIP_SKILLS[skill].some(alias=>{
+    const escaped=alias.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`,'i').test(value);
+  });
+}
+function containsTerm(text,term){
+  const escaped=term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`,'i').test(text);
+}
+function safeExternalUrl(value){
+  try{
+    const url=new URL(value);
+    return url.protocol==='https:'?url.href:'';
+  }catch{return ''}
+}
+
+function render(){
+  $('#nav').innerHTML = PAGES.map(([id,ic,l])=>`<a class="${S.tab===id?'on':''}" onclick="go('${id}')">${ic} ${l}</a>`).join('');
+  $('#view').innerHTML = VIEWS[S.tab]();
+  window.scrollTo(0,0);
+}
+window.addEventListener('message',event=>{
+  const frame=document.getElementById('skillGapEmbed');
+  if(event.origin!==location.origin||event.source!==frame?.contentWindow||event.data?.type!=='skillproof-gap-height')return;
+  frame.style.height=`${Math.max(1100,Math.min(10000,Number(event.data.height)||1800))}px`;
+});
+
+const VIEWS = {
+dashboard(){
+  const A=A0(), v=A.verified, names=Object.keys(v);
+  const firstName=S.profile?.fullName||S.name||'Student Name';
+  const college=S.profile?.college||S.profile?.branch||S.branch;
+  const photo=profilePhoto();
+  return `<div class="banner"><h1>Welcome Back, ${esc(firstName.split(' ')[0])}! 👋</h1>
+    <p>Evidence-based verified skill-gap & career readiness advisor</p><em>Dream Big... Achieve More ✨</em>
+    <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:#6d28d9" onclick="act(demo())">▶ Run demo with sample resume</button><button class="btn o" onclick="go('jobmatch')">Compare resume with a job ↗</button></div></div>
+  <div class="grid">
+    <div class="card"><h3>👤 Student Profile</h3><div class="row">${photo||`<div class="avatar">${esc(firstName[0]||'S')}</div>`}
+      <div><b style="font-size:20px">${esc(firstName)}</b><p class="mut">${esc(college)}</p></div></div>
+      <br><button class="btn o" onclick="go('profile')">View Profile →</button></div>
+    <div class="card"><h3>🏆 Overall Career Readiness</h3><div class="row">
+      <div><div class="ring" style="background:conic-gradient(#6d28d9 ${A.readiness*3.6}deg,#ede6ff 0)"><div>${A.readiness}%</div></div>
+      <p style="text-align:center;margin-top:8px">Verified readiness score</p></div>
+      <div class="stats"><div><b>${A.ready.length}</b><span class="mut">Ready Now internships</span></div>
+      <div><b>${A.stretch.length}</b><span class="mut">Stretch internships</span></div>
+      <div style="grid-column:span 2"><b>${A.skills_verified}</b><span class="mut">Skills verified</span></div></div></div></div>
+    <div class="card"><h3>📊 Skill Verification</h3>${names.map((n,i)=>bar(esc(n),v[n],i)).join('') || '<div class="empty">Upload your resume to begin</div>'}</div>
+  </div>`;
+},
+profile(){
+  const fields=(group)=>`<div class="profile-grid">${PROFILE_FIELDS[group].map(profileField).join('')}</div>`;
+  const files=`<div class="item"><b>Resume file</b><p class="mut">${S.resumeFile?`${esc(S.resumeFile)} (upload a new file from Resume & GitHub to replace it)`:'No resume uploaded yet.'}</p>
+    <button class="btn o" onclick="go('resume')">Upload / manage resume</button></div>`;
+  const verified=Object.entries(S.quiz).map(([skill,score])=>`<span class="chip">${esc(skill)}: ${score}% verified</span>`).join('')||'<span class="mut">No quiz-verified skills yet.</span>';
+  return `<div class="card"><h3>👤 Student Profile</h3>
+    <p class="mut">Profile details, including contact and academic information, are saved only in this browser. Add only information you are comfortable storing here.</p>
+    <section class="card"><h3>1. Personal Information</h3>${fields('personal')}</section>
+    <section class="card"><h3>2. Academic Details</h3>${fields('academic')}</section>
+    <section class="card"><h3>3. Technical Skills</h3>${fields('technical')}
+      <div class="item"><b>Claimed skills from resume evidence</b><div>${Object.keys(S.evidence).map(skill=>`<span class="chip">${esc(skill)}: ${S.evidence[skill]} evidence</span>`).join('')||'<span class="mut">Upload a resume to extract claimed skills.</span>'}</div>
+      <b style="display:block;margin-top:12px">Quiz-verified skills</b><div>${verified}</div></div>
+    </section>
+    <section class="card"><h3>4. Project Details</h3><p class="mut section-note">Add each project separately.</p>${profileEntries('projects')}</section>
+    <section class="card"><h3>5. Internship Experience</h3><p class="mut section-note">Add each internship separately.</p>${profileEntries('internships')}</section>
+    <section class="card"><h3>6. Certifications and Achievements</h3><p class="mut section-note">Add certifications separately; list awards and hackathon achievements below.</p>${profileEntries('certifications')}
+      <div class="profile-grid">${profileField(['awards','Awards and hackathons','textarea'])}</div>
+    </section>
+    <section class="card"><h3>7. Resume and Professional Links</h3>${files}${fields('links')}</section>
+    <section class="card"><h3>8. Career Preferences</h3>${fields('career')}</section>
+    <div class="profile-actions"><button class="btn" onclick="saveProfile()">Save profile</button><button class="btn o" onclick="act(clearData())">Clear saved data</button></div>
+    </div>`;
+},
+resume(){
+  const rows = S.parsed.map(p=>`<div class="item"><div class="row" style="justify-content:space-between"><b>${esc(p.skill)}</b>
+    <span class="badge ${p.level}">${p.level.toUpperCase()}</span></div>
+    <div class="track" style="margin:10px 0"><div class="fill" style="width:${p.evidence}%;background:#7c3aed"></div></div>
+    <small class="mut">Evidence ${p.evidence}/100 · ${p.mentions} mention(s)</small>
+    ${p.context.map(c=>`<div class="mut" style="font-size:13px;margin-top:6px">“${esc(c)}”</div>`).join('')}</div>`).join('');
+  return `<div class="card"><h3>📄 Resume & GitHub</h3>
+    <p class="mut">Upload your resume and, optionally, a GitHub README or project description. Supported formats: PDF, DOCX, Markdown, and TXT (maximum 5 MB per file). Scanned PDFs need OCR. Files are processed in memory; when MySQL is configured, only extracted skill scores and short evidence excerpts are saved with the local demo profile.</p>
+    <label class="file-picker" for="resumeFile">Resume file (required)
+      <input id="resumeFile" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onchange="showFileName('resumeFile','resumeSelected')">
+      <small id="resumeSelected" class="mut">${S.resumeFile?`Previously analyzed: ${esc(S.resumeFile)} (select again to re-upload)`:'Choose a PDF, DOCX, Markdown, or TXT file'}</small>
+    </label>
+    <label class="file-picker" for="githubFile">GitHub README / project description (optional)
+      <input id="githubFile" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onchange="showFileName('githubFile','githubSelected')">
+      <small id="githubSelected" class="mut">${S.githubFile?`Previously analyzed: ${esc(S.githubFile)} (select again to re-upload)`:'Choose a project-description file'}</small>
+    </label><br><br>
+    <label for="githubUsername">Or analyze public GitHub projects by username</label>
+    <div class="profile-actions"><input id="githubUsername" type="text" maxlength="255" placeholder="GitHub username or profile URL" autocomplete="url"><button class="btn o" onclick="act(connectGithub())">Analyze public READMEs</button></div>
+    <p class="mut">Reads up to 8 recent public repository READMEs through GitHub’s public API. Private repositories are not accessed.</p>
+    <label class="file-picker" for="linkedinExport">Your LinkedIn data export (optional)
+      <input id="linkedinExport" type="file" accept=".zip,.csv,application/zip,text/csv" onchange="showFileName('linkedinExport','linkedinSelected')">
+      <small id="linkedinSelected" class="mut">${S.linkedinFile?`Previously analyzed: ${esc(S.linkedinFile)} (select again to re-upload)`:'Choose your LinkedIn export ZIP or its Skills.csv file'}</small>
+    </label>
+    <p class="mut">Export your own data from LinkedIn Settings &amp; Privacy → Data privacy → Get a copy of your data. SkillProof reads Skills.csv and selected profile/project CSVs. Listed skills remain self-reported claims, not quiz verification; no password or OAuth token is requested.</p>
+    <button class="btn o" type="button" onclick="act(doParseLinkedIn())">Import LinkedIn export</button>
+    <button class="btn" onclick="act(doParse())">Extract & score evidence</button>
+    <button class="btn o" onclick="act(demo())">Load sample</button></div>
+    ${rows ? `<div class="card"><h3>Evidence-depth results</h3>${rows}</div>`:''}`;
+},
+jobmatch(){
+  const report=S.jobMatch;
+  const statusLabel={ready:'Ready',stretch:'Stretch',hidden_strength:'Hidden strength',unverified:'Unverified claim',not_yet:'Not yet'};
+  const list=(items,empty)=>`<div class="match-list">${items.length?items.map(item=>`<span class="chip">${esc(item)}</span>`).join(''):`<span class="mut">${empty}</span>`}</div>`;
+  const results=report?`<div class="card" id="jobMatchResults">
+    <h3>Match report for ${esc(report.resume_file)}</h3>
+    <div class="match-score"><strong>${report.score}%</strong><div><b>${report.score>=70?'Strong overlap':report.score>=40?'Some overlap':'More alignment needed'}</b><p class="mut">A heuristic combining trust-corrected skill readiness and exact keyword overlap. Not an ATS score or hiring prediction.</p></div></div>
+    <div class="match-columns">
+      <div class="item"><b>Trust-corrected skill readiness ${report.skill_score==null?'(no supported skills found in the job description)':`· ${report.skill_score}%`}</b>
+        <p class="mut">Quiz results count most; unverified resume claims are discounted.</p>
+        <h4 style="margin-top:12px">Required skill breakdown</h4>
+        ${report.skill_analysis.length?report.skill_analysis.map(item=>`<div class="item"><b>${esc(item.skill)}</b> · ${esc(statusLabel[item.status])}<br>
+          <small class="mut">Resume evidence ${item.evidence}/100 · ${item.quiz_score==null?'Not quiz-verified':'Quiz '+item.quiz_score+'%'} · Corrected level ${item.verified}/100</small>
+          ${item.quiz_score==null?`<p><button class="btn o" onclick="act(openSkillQuiz('${esc(item.skill)}'))">Take quiz</button></p>`:''}</div>`).join(''):'<p class="mut">No supported skills detected in this job description.</p>'}
+        <h4>Skills not found in your resume or quiz profile</h4>${list(report.missing_skills,'No unsupported required skills.')}
+      </div>
+      <div class="item"><b>Keyword overlap · ${report.keyword_score}%</b><p class="mut">Exact words found in both texts; related phrases are not inferred.</p>
+        <h4 style="margin-top:12px">Keywords found</h4>${list(report.matched_keywords,'No exact keyword overlap detected.')}
+        <h4 style="margin-top:12px">Keywords not found</h4>${list(report.missing_keywords,'No missing keywords detected.')}
+      </div>
+    </div>
+    <div class="item"><h4>Suggested next steps</h4>${report.suggestions.map(text=>`<p class="recommendation">${esc(text)}</p>`).join('')}</div>
+  </div>`:'<div id="jobMatchResults"></div>';
+  return `<div class="card"><h3>🎯 Resume / Job Match</h3>
+    <p class="mut">Compare a resume with a specific job description. SkillProof combines resume evidence with your saved quiz results to discount unverified claims and reveal hidden strengths. Keyword overlap is shown separately.</p>
+    <label class="file-picker" for="matchResumeFile">Resume file
+      <input id="matchResumeFile" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onchange="showFileName('matchResumeFile','matchResumeSelected')">
+      <small id="matchResumeSelected" class="mut">Choose a PDF, DOCX, Markdown, or TXT resume (maximum 5 MB)</small>
+    </label>
+    <label class="file-picker" for="matchGithubFile">GitHub README / project evidence (optional)
+      <input id="matchGithubFile" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onchange="showFileName('matchGithubFile','matchGithubSelected')">
+      <small id="matchGithubSelected" class="mut">Add project evidence to support skills listed in your resume</small>
+    </label>
+    <label for="jobDescription">Job description</label>
+    <textarea id="jobDescription" maxlength="30000" placeholder="Paste the job title, responsibilities, and required qualifications here..." oninput="updateJobDescription(this.value)">${esc(S.jobDescription)}</textarea>
+    <p class="mut">Job descriptions are processed for this report and aren’t saved in your profile.</p>
+    <div class="profile-actions"><button class="btn" onclick="act(matchJob())">Analyze match</button><button class="btn o" onclick="clearJobMatch()">Clear report</button></div>
+  </div>${results}`;
+},
+surveydata(){
+  const data=S.surveyData;
+  const preview=data?`<div class="table-wrap" role="region" aria-label="Survey CSV preview" tabindex="0">
+    <table class="survey-table"><thead><tr>${data.headers.map(header=>`<th scope="col">${esc(header)}</th>`).join('')}</tr></thead>
+      <tbody>${data.rows.slice(0,20).map(row=>`<tr>${data.headers.map((_,index)=>`<td>${esc(row[index]||'')}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table></div>
+    <p class="mut" style="margin-top:12px">Showing ${Math.min(data.rows.length,20)} of ${data.rows.length} response rows. Data stays in memory in this tab and is not sent to SkillProof or saved to browser storage.</p>`:'<p class="mut">No CSV file loaded yet.</p>';
+  return `<div class="card"><h3>📊 Connect the Student Survey Sheet</h3>
+    <p class="mut">Import the sheet as a file by downloading a CSV from Google Sheets, then selecting it below. This dataset remains separate from quiz answers and internship listings.</p>
+    <div class="item"><b>Export the sheet</b>
+      <ol style="padding-left:22px;margin-top:8px">
+        <li><a href="https://docs.google.com/spreadsheets/d/1Ymhe7Fu89M8gX0k6TZFY7aykEQ44N2dB16ipzF-UFz0/edit?resourcekey=&amp;gid=1015926960#gid=1015926960" target="_blank" rel="noopener noreferrer">Open the Google Sheet</a> (sign in if Google requests access).</li>
+        <li>In Google Sheets, choose <b>File → Download → Comma-separated values (.csv)</b>.</li>
+        <li>Select the downloaded CSV here. The app previews it locally in your browser.</li>
+      </ol>
+    </div>
+    <label class="file-picker" for="surveyCsv">Survey response CSV (maximum 5 MB)
+      <input id="surveyCsv" type="file" accept=".csv,text/csv" onchange="showFileName('surveyCsv','surveyCsvSelected')">
+      <small id="surveyCsvSelected" class="mut">Choose the CSV downloaded from Google Sheets</small>
+    </label>
+    <div class="profile-actions"><button class="btn" onclick="act(importSurveyCsv())">Load CSV preview</button><button class="btn o" onclick="clearSurveyCsv()">Clear imported file</button></div>
+    <p class="mut" role="status" aria-live="polite">${esc(S.surveyError||'')}</p>${data?`<p><b>${esc(data.fileName)}</b> · ${data.rows.length} response rows · ${data.headers.length} columns</p>`:''}
+  </div>${data?`<div class="card"><h3>Survey response preview</h3>${preview}</div>`:''}`;
+},
+verify(){
+  const sk = [...new Set([...QUIZ_SKILLS,...Object.keys(A0().verified)])];
+  const picker = `<div class="skills">${sk.map(s=>`<button class="btn ${S.qs&&S.qs.skill===s?'':'o'}" onclick="act(loadQuiz('${s}'))">${esc(s)}${S.quiz[s]!=null?' ✓ '+S.quiz[s]+'%':''}</button>`).join('')}${(S.customSkills||[]).map(s=>`<button class="btn ${S.customSkillSelected===s?'':'o'}" type="button" onclick="selectCustomSkill('${esc(s)}')">${esc(s)} · Custom</button>`).join('')}</div>
+    <form class="item" style="margin-top:14px" onsubmit="addCustomVerificationSkill(event)"><h4 style="margin:0 0 6px">Other skills</h4><label for="customVerificationSkill">Add skills that aren't listed above</label><div class="row" style="margin-top:8px"><input id="customVerificationSkill" maxlength="500" placeholder="Type skill names, separated by commas" aria-label="Other skill names" style="flex:1;min-width:220px"><button class="btn" type="submit">+ Add skills</button></div><small class="mut">Custom skills are saved in this browser and added to your list. Built-in quizzes are available for the skills above.</small></form>`;
+  let body = `<div class="empty"><b>Choose a skill to begin</b><p class="mut" style="margin-top:8px">Each short quiz checks different concepts. Your score is based on your answers, not resume keywords.</p></div>`;
+  if(S.customSkillSelected){
+    const customSkill=S.customSkillSelected, bank=S.customQuizBanks?.[customSkill];
+    body=bank?`<div class="empty"><b>${esc(customSkill)} custom quiz</b><p class="mut" style="margin:8px 0">This student-authored quiz is a practice signal, not an independent skill verification.</p><button class="btn" type="button" onclick="act(loadQuiz('${esc(customSkill)}'))">${S.customQuizResults?.[customSkill]?'Retake':'Start'} custom quiz</button><button class="btn o" type="button" style="margin-left:8px" onclick="editCustomQuiz('${esc(customSkill)}')">Edit quiz</button><button class="btn o" type="button" style="margin-left:8px" onclick="removeCustomVerificationSkill('${esc(customSkill)}')">Remove skill</button></div>`:customQuizEditor(customSkill);
+  }
+  if(S.qs){
+    const skill=S.qs.skill, seen=S.quizSeen[skill]||[];
+    const completed=S.qs.questions.every(q=>seen.includes(q.id));
+    const round=Math.max(1,Math.floor(seen.length/4)+(completed?0:1));
+    const previous=(S.customSkills||[]).includes(skill)?S.customQuizResults?.[skill]?.score:S.quiz[skill];
+    const questions=S.qs.questions.map((q,i)=>`<fieldset class="item quiz-question"><legend class="mut">Question ${i+1} of ${S.qs.questions.length} · ${esc(q.sub)}</legend><h4>${esc(q.q)}</h4>${q.options.map((o,j)=>`<label class="opt" style="font-weight:400"><input type="radio" name="${esc(q.id)}" value="${j}">${esc(o)}</label>`).join('')}</fieldset>`).join('');
+    const result=completed?`<div class="item quiz-result" role="status"><h4>Latest result: ${previous}%</h4><p class="mut">This score reflects ${S.qs.questions.length} questions in this round. Use it as a learning signal, not a formal certification.</p><div class="skills" style="margin-top:12px">${Object.entries(S.subs[skill]||{}).map(([topic,score])=>`<div class="item quiz-topic"><b>${esc(topic)}</b><div class="track" style="margin:8px 0"><div class="fill" style="width:${score}%;background:${score>=70?'#22a06b':score>=40?'#f59e0b':'#dc4c4c'}"></div></div><small class="mut">${score}% this round</small></div>`).join('')}</div>${(S.res[skill]&&S.res[skill].url)?`<p>Focus next on <b>${esc(S.res[skill].weak)}</b>. <a href="${esc(S.res[skill].url)}" target="_blank" rel="noopener noreferrer">${esc(S.res[skill].title||'Open study resource')}</a></p>`:'<p>Good work—no weak sub-concept was flagged in this round.</p>'}<button class="btn o" style="margin-top:14px" onclick="act(loadQuiz('${esc(skill)}'))">Start adaptive next round</button></div>`:'';
+    const answered=completed?S.qs.questions.length:0;
+    body=`<div class="quiz-intro"><div><b>${esc(skill)} · Round ${round}</b><p class="mut">${S.qs.adaptive?'Adaptive round: questions prioritize concepts with lower recent scores.':'First round: questions sample different concepts.'}</p></div><span class="badge ${previous==null?'medium':previous>=70?'strong':'weak'}">${previous==null?'Not verified':`Latest ${previous}%`}</span></div><div class="quiz-progress" aria-label="${answered} of ${S.qs.questions.length} questions completed"><span style="width:${answered/S.qs.questions.length*100}%"></span></div><p class="mut" style="margin-bottom:12px">Answer every question, then submit. Topics are scored separately so you can see what to practice.</p>${questions}${completed?'':`<button class="btn" onclick="act(submitQuiz())">Submit answers</button>`}${result}`;
+  }
+  const overview=sk.map(skill=>{const score=S.quiz[skill],evidence=S.evidence[skill];return `<div class="item"><div class="row" style="justify-content:space-between"><b>${esc(skill)}</b><span class="badge ${score==null?'medium':score>=70?'strong':'weak'}">${score==null?'Not verified':`Quiz ${score}%`}</span></div><small class="mut">${evidence==null?'No resume evidence yet':`Resume evidence ${evidence}/100`}${S.subs[skill]?` · ${Object.keys(S.subs[skill]).length} concepts checked`:''}</small></div>`}).join('');
+  const customSummary=(S.customSkills||[]).map(skill=>{const result=S.customQuizResults?.[skill];return `<div class="item"><div class="row" style="justify-content:space-between"><b>${esc(skill)} · Custom skill</b><span class="badge ${result&&result.score>=60?'strong':'medium'}">${result?`Practice quiz ${result.score}%`:'Quiz not set up'}</span></div><small class="mut">${result?'Student-authored quiz result; not independently verified.':'Add a four-question quiz to practice this skill.'}</small>${result?`<p class="mut">${Object.entries(result.subs||{}).map(([topic,score])=>`${esc(topic)}: ${score}%`).join(' · ')}</p>`:''}</div>`}).join('');
+  return `<div class="card"><h3>Skill Verification</h3><p class="mut">Verify your understanding with short, skill-specific quizzes. Results are saved in this browser and compared with resume evidence in the mismatch and gap reports.</p>${picker}${body}<h4 style="margin:20px 0 8px">Your verification summary</h4>${overview}${customSummary}</div>`;
+},mismatch(){
+  const m=A0().mismatches;
+  return `<div class="card"><h3>⚠ Mismatch Report</h3>${m.length?m.map(x=>`<div class="item"><div class="row" style="justify-content:space-between"><b>${x.skill}</b>
+    <span class="badge ${x.type}">${x.type==='hidden'?'HIDDEN STRENGTH':x.type.toUpperCase()}</span></div>
+    <p class="mut" style="margin-top:8px">${x.msg}</p></div>`).join(''):'<div class="empty">Analyse your resume and take quizzes to see mismatches.</div>'}</div>`;
+},
+gap(){
+  const ks=Object.keys(S.subs);
+  return `<div class="card"><h3>📊 Skill Gap Analysis</h3>${ks.length?ks.map(k=>{
+    const subs=S.subs[k], r=S.res[k];
+    return `<div class="item"><b>${k}</b> <span class="mut">(${S.quiz[k]}%)</span>
+    ${Object.entries(subs).map(([s,v],i)=>bar(s,v,i)).join('')}
+    ${r?`<p>💡 Weakest: <b>${r.weak}</b> → <a href="${r.url}" target="_blank">${r.title}</a></p>`:'<p>✅ No weak sub-topic found.</p>'}</div>`}).join(''):'<div class="empty">Take a skill quiz to get sub-topic diagnosis.</div>'}</div>`;
+},
+matcher(){
+  const A=A0(), col=(t,l,c)=>`<div><h3 style="font-size:19px">${t} (${l.length})</h3>${l.map(p=>`<div class="item"><b>${p.title}</b><br><span class="mut">${p.company}</span>
+    <div class="track" style="margin:8px 0"><div class="fill" style="width:${p.coverage}%;background:${c}"></div></div>
+    <small class="mut">${p.coverage}% trust-corrected skill coverage</small><br>
+    ${p.missing.length?p.missing.map(m=>`<span class="chip">needs ${esc(m)}</span>`).join(''):'<span class="chip">✓ listed thresholds met</span>'}
+    <button class="btn o" type="button" aria-expanded="${S.internshipReportId===p.id}" onclick="toggleInternshipReport(${Number(p.id)})">${S.internshipReportId===p.id?'Hide':'View'} match report</button>
+    ${S.internshipReportId===p.id?internshipReport(p):''}</div>`).join('')||'<p class="mut">None</p>'}</div>`;
+  const importPanel=`<div class="item"><h4>Use your Internship Database CSV</h4>
+    <h4>Add an internship manually</h4>
+    <p class="mut">Enter details from a listing you checked on its source site. Entries save to MySQL when configured. CSV imports remain in this browser.</p>
+    <form id="manualInternshipForm" onsubmit="event.preventDefault();addManualInternship()">
+      <div class="profile-grid">
+        <label>Company name<input id="manualCompany" maxlength="200" required></label>
+        <label>Internship title<input id="manualTitle" maxlength="200" required></label>
+        <label>Required skills<input id="manualSkills" maxlength="1000" placeholder="Python, SQL, Excel" required></label>
+        <label>Location<input id="manualLocation" maxlength="300" placeholder="Hyderabad"></label>
+        <label>Work mode<input id="manualWorkMode" maxlength="100" placeholder="Remote / On-site / Hybrid"></label>
+        <label>Stipend<input id="manualStipend" maxlength="200" placeholder="₹10,000 per month"></label>
+      <label>Deadline<input id="manualDeadline" type="date"></label>
+        <label>Source site<input id="manualSource" maxlength="500" placeholder="Internshala, AICTE, LinkedIn, Wellfound" required></label>
+        <label>Last checked<input id="manualCheckedAt" type="date"></label>
+        <label>Application link<input id="manualApplyUrl" type="url" maxlength="2000" placeholder="https://…" required></label>
+        <label>Status<input id="manualStatus" maxlength="100" value="Needs verification" required></label>
+      </div>
+      <label>Job description<textarea id="manualDescription" maxlength="12000" required></textarea></label>
+      <div class="profile-actions"><button class="btn" type="submit">Add internship</button></div>
+    </form>
+    <p class="mut">In Google Sheets, open the <b>Internships</b> tab and choose File → Download → CSV. Import the file here to use those listings instead of demo postings. Public refresh uses the authorized API feeds listed above; this app does not scrape job boards.</p>
+    <p class="mut">Or load the three public listings checked on 2026-11-11. Availability and eligibility can change; confirm them on the source site before applying.</p>
+    <div class="profile-actions"><button class="btn o" type="button" onclick="loadVerifiedInternships()">Load researched listings</button>
+      <button class="btn o" type="button" onclick="act(loadPublicApiInternships())">Fetch public ATS/API listings</button>
+      <a class="btn o" href="./internship_listings_verified_2026-11-11.csv" download>Download listings CSV</a></div>
+    <p class="mut">Public refresh uses employer ATS/public job APIs (Greenhouse, Lever, Ashby, Remotive, Arbeitnow, and The Muse); it does not scrape the named job boards. Confirm that each opportunity is still open and eligible on the employer's site.</p>
+    <p class="mut">Use these exact columns in row 1. Listings are stored in this browser.</p>
+    <code style="display:block;white-space:normal;overflow-wrap:anywhere;margin:8px 0">${esc(INTERNSHIP_HEADERS.join(' | '))}</code>
+    <button class="btn o" type="button" onclick="act(copyInternshipHeaders())">Copy column headings</button>
+    <label class="file-picker" for="internshipCsv">Internship listings CSV (maximum 1 MB, 500 rows)
+      <input id="internshipCsv" type="file" accept=".csv,text/csv" onchange="showFileName('internshipCsv','internshipCsvSelected')">
+      <small id="internshipCsvSelected" class="mut">Choose the exported CSV</small>
+    </label>
+    <div class="profile-actions"><button class="btn" type="button" onclick="act(importInternshipCsv())">Import and match listings</button>
+      ${S.importedInternships.length?'<button class="btn o" type="button" onclick="clearInternshipCsv()">Use demo postings</button>':''}</div>
+    <p class="mut" role="status" aria-live="polite">${esc(S.internshipDbError||'')}</p>
+    <p class="mut" role="status" aria-live="polite">${esc(S.internshipImportError||'')}</p>
+    ${S.importedInternships.length?`<p><b>${S.importedInternships.length} imported listings</b> · ${esc(S.internshipImportFile)} · Please verify source, status, and deadline before applying.</p>`:''}
+  </div>`;
+  if(S.importedInternships.length){
+    const groups={ready:[],stretch:[],notyet:[],review:[]};
+    S.importedInternships.forEach((posting,index)=>{
+      const metrics=importedInternshipMetrics(posting);
+      const status=String(posting.status||'').trim();
+      const isClosed=/closed|expired|filled|cancelled|canceled|withdrawn|inactive|not accepting/i.test(status);
+      const isOpen=/^(open|active|verified|accepting)(\b|[ -])/i.test(status);
+      const allSkillsMeet=metrics.skillAnalysis.length>0&&metrics.skillAnalysis.every(item=>item.meets);
+      const bucket=isClosed||!isOpen?'review':allSkillsMeet?'ready':metrics.skillScore!==null&&metrics.skillScore>=40?'stretch':'notyet';
+      groups[bucket].push({...posting,metrics,reportId:`imported-${index}`});
+    });
+    const importedCol=(title,list,color)=>`<div><h3 style="font-size:19px">${title} (${list.length})</h3>${list.map(posting=>`<div class="item">
+      <b>${esc(posting.title)}</b><br><span class="mut">${esc(posting.company)}</span>
+      <p class="mut">${esc(posting.location||'Location not listed')} · ${esc(posting.workMode||'Work mode not listed')}</p>
+      <div class="track" style="margin:8px 0"><div class="fill" style="width:${posting.metrics.skillScore??0}%;background:${color}"></div></div>
+      <small class="mut">${posting.metrics.skillScore===null?'No supported required skills detected':posting.metrics.skillScore+'% trust-corrected skill readiness'}</small><br>
+      <span class="chip">${esc(posting.status||'Status not provided')}</span>
+      <button class="btn o" type="button" aria-expanded="${S.internshipReportId===posting.reportId}" onclick="toggleInternshipReport('${posting.reportId}')">${S.internshipReportId===posting.reportId?'Hide':'View'} match report</button>
+      ${S.internshipReportId===posting.reportId?importedInternshipReport(posting):''}</div>`).join('')||'<p class="mut">None</p>'}</div>`;
+    const reviewGroup=groups.review.length?`<div class="card"><h3>Verify listing status (${groups.review.length})</h3><p class="mut">Listings without an Open, Active, Verified, or Accepting status—or marked closed/expired—are held out of readiness buckets.</p>${importedCol('Status review',groups.review,'#7c76a3')}</div>`:'';
+    return `<div class="card"><h3>💼 Internship Matcher</h3><p class="mut">Imported listings come from your CSV. SkillProof compares recognized requirements against evidence and quizzes; its score is not an employer ATS ranking. Check every source, application status, and deadline yourself.</p>
+      ${importPanel}<div class="cols">${importedCol('Ready Now',groups.ready,'#2a9d8f')}${importedCol('Stretch',groups.stretch,'#f5a623')}${importedCol('Not Yet',groups.notyet,'#ef6351')}</div>${reviewGroup}</div>`;
+  }
+  return `<div class="card"><h3>💼 Internship Matcher</h3>
+    <p class="mut">Open any internship for a tailored SkillProof match report with skill thresholds, resume evidence, quiz verification, corrected skill levels, and recommended next steps. Reports use this project’s local sample dataset; they are not confirmed live vacancies or employer ATS scores.</p>
+    ${importPanel}<div class="cols">${col('Ready Now',A.ready,'#2a9d8f')}${col('Stretch',A.stretch,'#f5a623')}${col('Not Yet',A.notyet,'#ef6351')}</div></div>`;
+},
+leverage(){
+  return renderSkillLeverage();
+  const A=A0(), mx=Math.max(1,...A.simulation.map(s=>s.ready));
+  return `<div class="card"><h3>🏆 Skill Leverage</h3>${A.leverage.length?A.leverage.map((l,i)=>`<div class="item"><div class="row" style="justify-content:space-between"><b>#${i+1} ${l.skill}</b>
+    <span class="badge strong">+${l.unlocks} postings</span></div><small class="mut">Currently ${l.current}%. ${l.names.join(' · ')||'No new postings alone.'}</small></div>`).join(''):'<div class="empty">Analyse your resume first.</div>'}</div>
+    <div class="card"><h3>📈 Unlock simulator</h3><p class="mut">Ready Now count as you prove skills in ranked order:</p>
+    ${A.simulation.map((s,i)=>`<div class="bar"><span style="width:190px">${i?'+ '+s.skill:'Today'}</span><div class="track"><div class="fill" style="width:${s.ready/mx*100}%;background:${COLORS[i%6]}"></div></div><b>${s.ready}</b></div>`).join('')}</div>`;
+},
+gap(){ return `<div class="card gap-embed-card"><iframe id="skillGapEmbed" title="Skill Gap Analysis" src="/skillproof-gap-analysis.html" loading="eager"></iframe></div>`; },
+  roadmap(){ return renderCareerRoadmap(); }};
+
+async function saveProfile(){
+  syncProfileForm();
+  S.name=S.profile.fullName||'Student Name';
+  S.branch=S.profile.branch||S.profile.degree||'';
+  persist();
+  try{await saveProfileToMysql();toast('Profile saved to MySQL')}
+  catch(error){toast('Profile saved in this browser; MySQL is not configured')}
+  go('dashboard');
+}
+const PROFILE_ID=1;
+async function saveProfileToMysql(){
+  return api(`profiles/${PROFILE_ID}`,{
+    display_name:S.profile.fullName||S.name||'Student Name',
+    email:S.profile.email||null,
+    branch:S.profile.branch||S.profile.degree||null
+  },'PUT');
+}
+async function loadProfileFromMysql(){
+  try{
+    const data=await api(`profiles/${PROFILE_ID}`);
+    S.profile={...S.profile,fullName:data.profile.display_name||S.profile.fullName,email:data.profile.email||S.profile.email,branch:data.profile.branch||S.profile.branch};
+    S.name=S.profile.fullName||'Student Name';S.branch=S.profile.branch||'';
+    S.parsed=(data.evidence||[]).map(item=>({skill:item.skill,evidence:item.evidence_score,level:String(item.evidence_level).toLowerCase(),context:item.excerpt?[item.excerpt]:[]}));
+    S.evidence={};
+    S.parsed.forEach(item=>{S.evidence[item.skill]=Math.max(S.evidence[item.skill]||0,item.evidence)});
+    persist();
+  }catch(error){
+    if(!String(error.message||'').includes('Profile not found'))console.info('MySQL profile not loaded:',error.message);
+  }
+}
+async function loadQuizAttemptsFromMysql(){
+  try{
+    const data=await api(`profiles/${PROFILE_ID}/quiz-attempts?limit=500`),seenSkills=new Set();
+    for(const attempt of data.attempts||[]){
+      if(seenSkills.has(attempt.skill)||!QUIZ_SKILLS.includes(attempt.skill))continue;
+      seenSkills.add(attempt.skill);
+      S.quiz[attempt.skill]=Number(attempt.score);
+      const subScores=typeof attempt.sub_scores==='string'?JSON.parse(attempt.sub_scores):attempt.sub_scores;
+      if(subScores&&typeof subScores==='object')S.subs[attempt.skill]=subScores;
+      const questionIds=typeof attempt.question_ids==='string'?JSON.parse(attempt.question_ids):attempt.question_ids;
+      if(Array.isArray(questionIds))S.quizSeen[attempt.skill]=[...new Set([...(S.quizSeen[attempt.skill]||[]),...questionIds])];
+    }
+    persist();
+  }catch(error){console.info('Durable quiz history is not available:',error.message)}
+}
+async function clearData(){
+  if(!confirm('Clear this browser’s saved profile, resume, and quiz results?'))return;
+  localStorage.removeItem(STORE_KEY);
+  Object.assign(S,{name:'Student Name',branch:'',profile:emptyProfile(),resumeFile:'',githubFile:'',linkedinFile:'',parsed:[],evidence:{},quiz:{},subs:{},quizSeen:{},res:{},customSkills:[],customSkillSelected:'',customQuizBanks:{},customQuizResults:{},jobDescription:'',jobMatch:null,surveyData:null,surveyError:'',internshipReportId:null,importedInternships:[],internshipImportFile:'',internshipImportError:'',A:null,tab:'dashboard',qs:null});
+  S.A=await api('analyze',{evidence:S.evidence,quiz:S.quiz});
+  go('dashboard'); toast('Saved data cleared');
+}
+function showFileName(inputId,labelId){
+  const file=$('#'+inputId).files[0];
+  if(file)$('#'+labelId).textContent=file.name+' · '+Math.ceil(file.size/1024)+' KB';
+}
+function updateJobDescription(value){
+  S.jobDescription=value;
+  if(S.jobMatch){
+    S.jobMatch=null;
+    const results=$('#jobMatchResults');
+    if(results)results.innerHTML='';
+  }
+}
+function clearJobMatch(){
+  S.jobMatch=null;
+  render();
+}
+function parseCsv(text){
+  const rows=[];
+  let row=[],field='',quoted=false;
+  for(let i=0;i<text.length;i++){
+    const char=text[i];
+    if(quoted){
+      if(char==='"'&&text[i+1]==='"'){field+='"';i++}
+      else if(char==='"')quoted=false;
+      else field+=char;
+    }else if(char==='"'&&field==='')quoted=true;
+    else if(char===','){row.push(field);field=''}
+    else if(char==='\n'||char==='\r'){
+      if(char==='\r'&&text[i+1]==='\n')i++;
+      row.push(field);field='';
+      if(row.some(value=>value.trim()))rows.push(row);
+      row=[];
+    }else field+=char;
+  }
+  if(quoted)throw new Error('CSV contains an unclosed quoted field.');
+  row.push(field);
+  if(row.some(value=>value.trim()))rows.push(row);
+  if(rows.length<2)throw new Error('CSV must include a header row and at least one response row.');
+  const headers=rows[0].map((header,index)=>header.trim()||`Column ${index+1}`);
+  if(headers.length>100)throw new Error('CSV cannot contain more than 100 columns.');
+  const responseRows=rows.slice(1);
+  if(responseRows.length>10000)throw new Error('CSV cannot contain more than 10,000 response rows.');
+  return {headers,rows:responseRows.map(values=>headers.map((_,index)=>values[index]||''))};
+}
+function parseInternshipCsv(text){
+  const parsed=parseCsv(text);
+  const normalize=header=>header.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  const aliases={
+    company:['company name'],title:['internship title'],requiredSkills:['required skills'],
+    jobDescription:['job description'],location:['location'],workMode:['work mode'],
+    stipend:['stipend'],applyUrl:['apply url','application link'],postedDate:['posted date'],
+    deadline:['deadline'],status:['status'],source:['source','source website']
+  };
+  const normalizedHeaders=parsed.headers.map(normalize);
+  const columns={};
+  for(const [key,names] of Object.entries(aliases)){
+    const index=normalizedHeaders.findIndex(header=>names.includes(header));
+    if(index<0)throw new Error(`CSV is missing the required "${names[0]}" column.`);
+    columns[key]=index;
+  }
+  if(parsed.rows.length>500)throw new Error('Import at most 500 internship listings at a time.');
+  const limits={company:200,title:200,requiredSkills:1000,jobDescription:12000,location:300,workMode:100,stipend:200,applyUrl:2000,postedDate:100,deadline:100,status:100,source:500};
+  const required=['company','title','requiredSkills','jobDescription','applyUrl','source'];
+  return parsed.rows.map((row,rowIndex)=>{
+    const listing={};
+    for(const [key,index] of Object.entries(columns)){
+      const value=String(row[index]||'').trim();
+      if(value.length>limits[key])throw new Error(`Row ${rowIndex+2}: "${aliases[key][0]}" exceeds ${limits[key]} characters.`);
+      listing[key]=value;
+    }
+    for(const key of required){
+      if(!listing[key])throw new Error(`Row ${rowIndex+2}: "${aliases[key][0]}" cannot be empty.`);
+    }
+    if(!safeExternalUrl(listing.applyUrl))throw new Error(`Row ${rowIndex+2}: Apply URL must be a valid HTTPS link.`);
+    if(!listing.status)listing.status='Needs verification';
+    return listing;
+  });
+}
+function addManualInternship(){
+  return saveManualInternship();
+}
+async function saveManualInternship(){
+  const field=id=>$('#'+id).value.trim();
+  const rawStatus=field('manualStatus').toLowerCase();
+  const listing={
+    company_name:field('manualCompany'),internship_title:field('manualTitle'),required_skills:field('manualSkills'),
+    job_description:field('manualDescription'),location:field('manualLocation')||null,work_mode:field('manualWorkMode')||'UNSPECIFIED',
+    stipend:field('manualStipend')||null,apply_url:field('manualApplyUrl'),deadline:field('manualDeadline')||null,
+    status:rawStatus==='open'?'OPEN':rawStatus==='closed'?'CLOSED':'NEEDS_REVIEW',source:field('manualSource'),
+    source_checked_at:field('manualCheckedAt')||null
+  };
+  if(!safeExternalUrl(listing.apply_url)){toast('Application link must be a valid HTTPS URL');return}
+  S.internshipDbError='';
+  try{
+    const saved=await api('internships',listing);
+    S.importedInternships=[saved,...S.importedInternships.filter(item=>item.applyUrl!==saved.applyUrl)];
+    S.internshipImportFile='MySQL internship database';
+    S.internshipReportId=null;
+    persist();
+    toast('Internship saved to MySQL');
+    render();
+  }catch(error){
+    S.internshipDbError=error.message||'Could not save internship to MySQL.';
+    render();
+  }
+}
+async function loadMysqlInternships(){
+  try{
+    const data=await api('internships');
+    const fromDb=(data.internships||[]).map(item=>({...item,postedDate:''}));
+    const databaseUrls=new Set(fromDb.map(item=>item.applyUrl));
+    S.importedInternships=[...fromDb,...S.importedInternships.filter(item=>!databaseUrls.has(item.applyUrl))];
+    if(fromDb.length)S.internshipImportFile='MySQL internship database';
+    S.internshipDbError='';
+    persist();
+  }catch(error){
+    S.internshipDbError=error.message||'MySQL internship database is unavailable.';
+  }
+  if(S.tab==='matcher')render();
+}
+async function importInternshipCsv(){
+  const file=$('#internshipCsv').files[0];
+  if(!file){toast('Choose an Internship Database CSV first');return}
+  const previousListings=S.importedInternships,previousFile=S.internshipImportFile;
+  S.internshipImportError='';
+  try{
+    if(!file.name.toLowerCase().endsWith('.csv'))throw new Error('Choose a .csv file exported from Google Sheets.');
+    if(file.size===0)throw new Error('The selected CSV file is empty.');
+    if(file.size>1024*1024)throw new Error('Internship CSV files must be 1 MB or smaller.');
+    const listings=parseInternshipCsv((await file.text()).replace(/^\uFEFF/,''));
+    S.importedInternships=listings;
+    S.internshipImportFile=file.name;
+    if(!persist()){
+      S.importedInternships=previousListings;
+      S.internshipImportFile=previousFile;
+      throw new Error('Could not save this dataset in browser storage. Reduce the CSV size and try again.');
+    }
+    S.internshipReportId=null;
+    toast(`Imported ${listings.length} internship listings`);
+  }catch(error){
+    S.internshipImportError=error.message||'Could not import the internship CSV.';
+    toast(S.internshipImportError);
+  }
+  render();
+}
+function loadVerifiedInternships(){
+  const previousListings=S.importedInternships,previousFile=S.internshipImportFile;
+  S.importedInternships=VERIFIED_INTERNSHIPS.map(listing=>({...listing}));
+  S.internshipImportFile='internship_listings_verified_2026-11-11.csv';
+  if(!persist()){
+    S.importedInternships=previousListings;S.internshipImportFile=previousFile;
+    return;
+  }
+  S.internshipReportId=null;
+  toast(`Loaded ${S.importedInternships.length} researched listings`);
+  render();
+}
+async function loadPublicApiInternships(){
+  S.internshipDbError='Refreshing public job feeds…';render();
+  try{
+    const harvestResponse=await fetch('/jobs/harvest-free',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({use_jobspy:false,enrich_with_llm:false})});
+    const harvest=await harvestResponse.json();
+    if(!harvestResponse.ok)throw new Error(harvest.detail||`Refresh failed (${harvestResponse.status})`);
+    const postingsResponse=await fetch('/jobs/postings?limit=200');
+    const payload=await postingsResponse.json();
+    if(!postingsResponse.ok)throw new Error(payload.detail||`Could not load postings (${postingsResponse.status})`);
+    const imported=(payload.postings||[]).filter(posting=>posting.source!=='seed'&&safeExternalUrl(posting.source_url)).map(posting=>({
+      company:posting.company,title:posting.title,
+      requiredSkills:Object.keys(posting.skills||{}).join(', '),
+      jobDescription:[posting.description,posting.requirements_text,posting.preferred_text].filter(Boolean).join('\n\n'),
+      location:posting.location||'',workMode:/remote/i.test(`${posting.location||''} ${posting.description||''}`)?'Remote':'Unspecified',
+      stipend:'',applyUrl:posting.source_url,postedDate:posting.posted_at?String(posting.posted_at).slice(0,10):'',deadline:'',
+      status:'Active - verify on employer site',source:`${posting.source} public feed`
+    }));
+    if(!imported.length)throw new Error('No non-seed public postings were returned. Try again later or use manual entry/CSV.');
+    const urls=new Set(imported.map(item=>item.applyUrl));
+    S.importedInternships=[...imported,...S.importedInternships.filter(item=>!urls.has(item.applyUrl))];
+    S.internshipImportFile=`Public API snapshot (${imported.length} listings)`;
+    S.internshipImportError='';S.internshipDbError='';S.internshipReportId=null;
+    persist();toast(`Loaded ${imported.length} public API listings`);
+    console.info('Public API refresh summary',harvest);
+  }catch(error){
+    S.internshipDbError=error.message||'Could not refresh public job feeds.';
+  }
+  render();
+}
+async function copyInternshipHeaders(){
+  try{
+    await navigator.clipboard.writeText(INTERNSHIP_HEADERS.join('\t'));
+    toast('Internship headings copied');
+  }catch(error){
+    console.error('Could not copy internship headings',error);
+    toast('Clipboard access is unavailable; copy the headings from README.md');
+  }
+}
+function clearInternshipCsv(){
+  const previousListings=S.importedInternships,previousFile=S.internshipImportFile;
+  S.importedInternships=[];S.internshipImportFile='';S.internshipImportError='';S.internshipReportId=null;
+  if(!persist()){
+    S.importedInternships=previousListings;S.internshipImportFile=previousFile;
+    S.internshipImportError='Could not remove the imported data from browser storage.';
+  }
+  render();
+}
+async function importSurveyCsv(){
+  const file=$('#surveyCsv').files[0];
+  if(!file){toast('Choose a CSV file first');return}
+  S.surveyError='';
+  try{
+    if(!file.name.toLowerCase().endsWith('.csv'))throw new Error('Choose a .csv file exported from Google Sheets.');
+    if(file.size===0)throw new Error('The selected CSV file is empty.');
+    if(file.size>5*1024*1024)throw new Error('CSV files must be 5 MB or smaller.');
+    const text=(await file.text()).replace(/^\uFEFF/,'');
+    const parsed=parseCsv(text);
+    S.surveyData={fileName:file.name,...parsed};
+    toast('Survey CSV loaded locally');
+  }catch(error){
+    S.surveyData=null;
+    S.surveyError=error.message||'Could not read the CSV file.';
+    toast(S.surveyError);
+  }
+  render();
+}
+function clearSurveyCsv(){
+  S.surveyData=null;S.surveyError='';render();
+}
+async function matchJob(){
+  const resumeFile=$('#matchResumeFile').files[0];
+  const githubFile=$('#matchGithubFile').files[0];
+  const jobDescription=$('#jobDescription').value.trim();
+  S.jobDescription=$('#jobDescription').value;
+  if(!resumeFile){toast('Choose your resume file first');return}
+  if(!jobDescription){toast('Paste a job description first');return}
+  const form=new FormData();
+  form.append('resume_file',resumeFile);
+  form.append('job_description',jobDescription);
+  form.append('quiz_scores',JSON.stringify(S.quiz));
+  if(githubFile)form.append('github_file',githubFile);
+  S.jobMatch=await api('job-match/upload',form);
+  render();
+}
+async function openSkillQuiz(skill){
+  S.tab='verify';
+  await loadQuiz(skill);
+}
+async function doParse(){
+  const resumeFile=$('#resumeFile').files[0], githubFile=$('#githubFile').files[0];
+  if(!resumeFile){toast('Choose a resume file first');return}
+  const form=new FormData();
+  form.append('resume_file',resumeFile);
+  if(githubFile)form.append('github_file',githubFile);
+  const r=await api('parse/upload',form);
+  S.resumeFile=r.files.resume; S.githubFile=r.files.github||'';
+  S.parsed=r.skills; S.evidence={}; r.skills.forEach(p=>S.evidence[p.skill]=p.evidence);
+  S.jobMatch=null;
+  persist();
+  let databaseSaved=false;
+  try{await saveProfileToMysql();await api(`profiles/${PROFILE_ID}/evidence`,{skills:r.evidence_items||[]},'PUT');databaseSaved=true}
+  catch(error){console.info('Extracted evidence remains in this browser:',error.message)}
+  await refresh(); toast('Found '+r.skills.length+' skills'+(databaseSaved?' · saved to MySQL':'')); render();
+}
+async function connectGithub(){
+  const username=$('#githubUsername').value.trim();
+  if(!username){toast('Enter a public GitHub username or profile URL');return}
+  const r=await api('parse/github',{username});
+  S.githubFile='GitHub public repositories ('+username+')';
+  S.parsed=r.skills; S.evidence={}; r.skills.forEach(p=>S.evidence[p.skill]=p.evidence);
+  S.jobMatch=null; persist();
+  let databaseSaved=false;
+  try{await saveProfileToMysql();await api(`profiles/${PROFILE_ID}/evidence`,{skills:r.evidence_items||[]},'PUT');databaseSaved=true}
+  catch(error){console.info('GitHub evidence remains in this browser:',error.message)}
+  await refresh();
+  toast('Analyzed '+r.repositories.length+' public README(s), found '+r.skills.length+' skills'+(databaseSaved?' · saved to MySQL':''));
+  render();
+}
+async function doParseLinkedIn(){
+  const file=$('#linkedinExport')?.files[0];
+  if(!file){toast('Choose your LinkedIn export ZIP or Skills.csv first');return}
+  const form=new FormData();form.append('linkedin_file',file);
+  const result=await api('parse/linkedin-export',form);
+  const evidence={...S.evidence};
+  result.skills.forEach(item=>{evidence[item.skill]=Math.max(Number(evidence[item.skill])||0,item.evidence)});
+  S.evidence=evidence;
+  const parsedBySkill=new Map(S.parsed.map(item=>[item.skill,item]));
+  result.skills.forEach(item=>{const old=parsedBySkill.get(item.skill);parsedBySkill.set(item.skill,old&&old.evidence>=item.evidence?old:item)});
+  S.parsed=[...parsedBySkill.values()];S.linkedinFile=result.source;S.jobMatch=null;persist();
+  const evidence_items=result.evidence_items.map(item=>({...item,source_type:'LINKEDIN'}));
+  try{await saveProfileToMysql();await api(`profiles/${PROFILE_ID}/evidence`,{skills:evidence_items},'POST')}
+  catch(error){console.info('LinkedIn export evidence remains in this browser:',error.message)}
+  await refresh();toast(`Imported ${result.skills.length} LinkedIn-listed skill(s). These are self-reported claims, not quiz scores.`);render();
+}
+async function loadQuiz(s){
+  if((S.customSkills||[]).includes(s)){
+    const bank=S.customQuizBanks?.[s];
+    if(!bank||bank.length!==4){S.customSkillSelected=s;S.qs=null;render();return}
+    S.customSkillSelected=s;
+    const attempt=Date.now().toString(36);
+    S.qs={skill:s,adaptive:false,custom:true,questions:bank.map((question,index)=>({...question,id:`custom-${index+1}-${attempt}`,customIndex:index}))};
+    render();return;
+  }
+  S.customSkillSelected='';
+  const query=new URLSearchParams({sub_scores:JSON.stringify(S.subs[s]||{}),seen_ids:JSON.stringify(S.quizSeen[s]||[])});
+  S.qs=await api('quiz/'+encodeURIComponent(s)+'?'+query.toString()); render();
+}
+function editCustomQuiz(skill){S.customSkillSelected=skill;S.qs=null;render()}
+function saveCustomSkillQuiz(event,skill){
+  event.preventDefault();
+  const groups=[...event.currentTarget.querySelectorAll('[data-custom-q]')];
+  const questions=groups.map(group=>({sub:group.querySelector('[data-cq="sub"]').value.trim(),q:group.querySelector('[data-cq="q"]').value.trim(),options:[...group.querySelectorAll('[data-cq-option]')].map(input=>input.value.trim()),a:Number(group.querySelector('[data-cq="a"]').value)}));
+  if(questions.length!==4||questions.some(q=>!q.sub||!q.q||q.options.length!==4||q.options.some(option=>!option))){toast('Complete every concept, question, and answer choice');return}
+  if(questions.some(q=>new Set(q.options.map(option=>option.toLowerCase())).size!==4)){toast('Each question needs four different answer choices');return}
+  S.customQuizBanks={...(S.customQuizBanks||{}),[skill]:questions};persist();toast('Custom practice quiz saved');loadQuiz(skill);
+}
+function addCustomVerificationSkill(event){
+  event.preventDefault();
+  const field=$('#customVerificationSkill'),names=[...new Set((field?.value||'').split(/[\n,;]+/).map(name=>name.trim().replace(/\s+/g,' ')).filter(Boolean))];
+  if(!names.length){toast('Type at least one skill name first');return}
+  if(names.some(name=>name.length>60)){toast('Each skill name must be 60 characters or fewer');return}
+  const known=[...QUIZ_SKILLS,...Object.keys(A0().verified),...(S.customSkills||[])];
+  const knownNames=new Set(known.map(skill=>skill.toLowerCase())),existing=[],fresh=[];
+  names.forEach(name=>{const normalized=name.toLowerCase();if(knownNames.has(normalized))existing.push(name);else{fresh.push(name);knownNames.add(normalized)}});
+  if(!fresh.length){toast(`${existing[0]} is already in your skills list`);return}
+  if((S.customSkills||[]).length+fresh.length>30){toast('You can add up to 30 custom skills');return}
+  S.customSkills=[...(S.customSkills||[]),...fresh];
+  S.qs=null;S.customSkillSelected=fresh[fresh.length-1];persist();render();
+  if(existing.length)toast(`Added ${fresh.length} skill(s); skipped ${existing.length} already listed`);
+}
+function selectCustomSkill(name){S.qs=null;S.customSkillSelected=name;render()}
+function removeCustomVerificationSkill(name){
+  S.customSkills=(S.customSkills||[]).filter(skill=>skill!==name);
+  const banks={...(S.customQuizBanks||{})},results={...(S.customQuizResults||{})};delete banks[name];delete results[name];S.customQuizBanks=banks;S.customQuizResults=results;
+  if(S.customSkillSelected===name)S.customSkillSelected='';
+  persist();render();
+}
+async function submitQuiz(){
+  const answers={}; S.qs.questions.forEach(q=>{const c=document.querySelector(`input[name="${q.id}"]:checked`); if(c) answers[q.id]=+c.value});
+  if(Object.keys(answers).length!==S.qs.questions.length){toast('Please answer every question first');return}
+  if(S.qs.custom){
+    const counts={};let correct=0;
+    S.qs.questions.forEach(question=>{const topic=counts[question.sub]||(counts[question.sub]={correct:0,total:0});topic.total++;if(answers[question.id]===question.a){topic.correct++;correct++}});
+    const subs=Object.fromEntries(Object.entries(counts).map(([topic,count])=>[topic,Math.round(count.correct/count.total*100)]));
+    const score=Math.round(correct/S.qs.questions.length*100),skill=S.qs.skill;
+    S.quizSeen[skill]=[...new Set([...(S.quizSeen[skill]||[]),...S.qs.questions.map(question=>question.id)])];
+    S.customQuizResults={...(S.customQuizResults||{}),[skill]:{score,subs,completedAt:new Date().toISOString()}};
+    S.qs.questions=S.qs.questions.map(({customIndex,...question})=>question);S.qs.custom=false;
+    persist();toast(`${skill} practice quiz: ${score}%`);render();return;
+  }
+  const r=await api('score',{skill:S.qs.skill,question_ids:S.qs.questions.map(question=>question.id),answers});
+  S.quizSeen[r.skill]=[...new Set([...(S.quizSeen[r.skill]||[]),...S.qs.questions.map(question=>question.id)])];
+  S.quiz[r.skill]=r.score; S.subs[r.skill]=r.subs; S.res[r.skill]=r.resource?{...r.resource,weak:r.weakest}:null;
+  S.jobMatch=null;
+  persist();
+  if(S.mysqlConfigured){
+    try{await saveProfileToMysql();await api(`profiles/${PROFILE_ID}/quiz-attempts`,{skill:r.skill,score:r.score,sub_scores:r.subs,question_ids:S.qs.questions.map(question=>question.id)},'POST')}
+    catch(error){console.info('Quiz score remains in this browser because MySQL persistence failed:',error.message)}
+  }
+  await refresh(); toast(r.skill+': '+r.score+'%'); S.tab='verify'; render();
+}
+async function demo(){
+  go('resume');
+  const transfer=new DataTransfer();
+  transfer.items.add(new File([SAMPLE],'sample-resume.txt',{type:'text/plain'}));
+  $('#resumeFile').files=transfer.files;
+  showFileName('resumeFile','resumeSelected');
+  await doParse();
+  go('dashboard');
+}
+function start(){
+  try{restore()}catch(error){console.error('Could not restore saved SkillProof data',error);toast('Saved session data could not be loaded');}
+  render(); act(api('config').then(async config=>{S.mysqlConfigured=!!config.mysql_configured;if(S.mysqlConfigured){await loadProfileFromMysql();await loadQuizAttemptsFromMysql()}}).then(()=>refresh()).then(render));
+}
+start();
+</script>
+<script src="./roadmap.js"></script>
+<script src="./skill-leverage.js"></script>
+<script src="./gap-analysis.js"></script>
+<script src="./mismatch-report.js"></script>
+</body>
+</html>

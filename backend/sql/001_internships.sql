@@ -1,0 +1,77 @@
+CREATE DATABASE IF NOT EXISTS skillproof
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE skillproof;
+
+CREATE TABLE IF NOT EXISTS student_profiles (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  display_name VARCHAR(160) NOT NULL,
+  email VARCHAR(254) UNIQUE,
+  branch VARCHAR(160),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS skills (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(120) NOT NULL UNIQUE,
+  cluster_name VARCHAR(120) NOT NULL DEFAULT 'Uncategorized',
+  aliases JSON NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT TRUE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS evidence_items (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  profile_id BIGINT UNSIGNED NOT NULL,
+  skill_id BIGINT UNSIGNED NOT NULL,
+  source_type ENUM('RESUME','GITHUB','PROJECT','LINKEDIN','MANUAL') NOT NULL,
+  source_label VARCHAR(255),
+  excerpt TEXT NOT NULL,
+  evidence_level ENUM('WEAK','MEDIUM','STRONG') NOT NULL,
+  evidence_score TINYINT UNSIGNED NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (profile_id) REFERENCES student_profiles(id) ON DELETE CASCADE,
+  FOREIGN KEY (skill_id) REFERENCES skills(id),
+  INDEX idx_evidence_profile_skill (profile_id, skill_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS internship_postings (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  company_name VARCHAR(200) NOT NULL,
+  internship_title VARCHAR(200) NOT NULL,
+  job_description TEXT NOT NULL,
+  location VARCHAR(300),
+  work_mode ENUM('REMOTE','HYBRID','ONSITE','UNSPECIFIED') NOT NULL DEFAULT 'UNSPECIFIED',
+  stipend VARCHAR(200),
+  apply_url VARCHAR(2048) NOT NULL,
+  deadline DATE NULL,
+  status ENUM('OPEN','CLOSED','NEEDS_REVIEW') NOT NULL DEFAULT 'NEEDS_REVIEW',
+  source VARCHAR(500) NOT NULL,
+  source_checked_at DATE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_posting_apply_url (apply_url(512)),
+  INDEX idx_posting_status_deadline (status, deadline)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS posting_skills (
+  posting_id BIGINT UNSIGNED NOT NULL,
+  skill_id BIGINT UNSIGNED NOT NULL,
+  importance ENUM('REQUIRED','PREFERRED') NOT NULL DEFAULT 'REQUIRED',
+  minimum_score TINYINT UNSIGNED NOT NULL DEFAULT 60,
+  PRIMARY KEY (posting_id, skill_id),
+  FOREIGN KEY (posting_id) REFERENCES internship_postings(id) ON DELETE CASCADE,
+  FOREIGN KEY (skill_id) REFERENCES skills(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS quiz_attempts (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  profile_id BIGINT UNSIGNED NOT NULL,
+  skill_name VARCHAR(120) NOT NULL,
+  score TINYINT UNSIGNED NOT NULL,
+  question_ids JSON NOT NULL,
+  sub_scores JSON NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT chk_quiz_score CHECK (score <= 100),
+  FOREIGN KEY (profile_id) REFERENCES student_profiles(id) ON DELETE CASCADE,
+  INDEX idx_quiz_profile_skill_date (profile_id, skill_name, created_at)
+) ENGINE=InnoDB;

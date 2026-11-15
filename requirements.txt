@@ -1,0 +1,14 @@
+fastapi>=0.110,<1
+uvicorn[standard]>=0.29,<1
+pydantic>=2.9,<3
+python-docx>=1,<2
+python-multipart>=0.0.9,<1
+pypdf>=4,<7
+httpx>=0.27,<1
+tenacity>=8.2,<9
+sentence-transformers>=3.0,<4
+scikit-learn>=1.4,<2
+torch>=2.3,<3 --index-url https://download.pytorch.org/whl/cpu
+pymysql>=1.1,<2
+python-dotenv>=1,<2
+google-auth[requests]>=2.29,<3

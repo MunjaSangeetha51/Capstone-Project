@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>if(window.self!==window.top)document.documentElement.classList.add('in-frame');</script>
+<title>SkillProof – Skill Gap Analysis</title>
+<style>
+:root{--bg:#f3f6f4;--surface:#fff;--ink:#15231d;--muted:#5b6b63;--line:#d5dfd9;--accent:#0f6b52;--aink:#fff;--warn:#b4531a;--blue:#2d5fb0;--track:#e4ebe7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a15;--surface:#16251e;--ink:#e6f0ea;--muted:#9bb0a5;--line:#2a3d34;--accent:#4fc79f;--aink:#06261b;--warn:#f0985c;--blue:#7aa6ee;--track:#22352c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1a15;--surface:#16251e;--ink:#e6f0ea;--muted:#9bb0a5;--line:#2a3d34;--accent:#4fc79f;--aink:#06261b;--warn:#f0985c;--blue:#7aa6ee;--track:#22352c;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:28px 20px 64px}
+h1{font:700 clamp(28px,5vw,42px)/1.1 Georgia,"Times New Roman",serif;margin:0 0 10px}
+h2{font:700 22px/1.2 Georgia,serif;margin:40px 0 6px}
+.lead,.sub{color:var(--muted);max-width:64ch;margin:0 0 14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+select{font:inherit;padding:9px 12px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:min(100%,320px)}
+select:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.pick{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.pick label{font-weight:600}
+.badge{font-size:13px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:2px 10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:18px}
+.cards div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.cards b{display:block;font:700 32px/1.1 Georgia,serif}
+.cards span{font-size:14px;color:var(--muted)}
+.ring{color:var(--accent)}
+.inp{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px 28px}
+.inp h4{margin:0 0 4px;font-size:15px}
+.inp h4 small{color:var(--muted);font-weight:400}
+.inp label{display:grid;grid-template-columns:70px 1fr 32px;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.inp input{width:100%;accent-color:var(--accent)}
+.inp output{text-align:right;font-variant-numeric:tabular-nums}
+.g{display:grid;grid-template-columns:150px 1fr 150px;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.g:first-child{border-top:0}
+.bar{position:relative;height:16px;background:var(--track);border-radius:4px}
+.bar i{position:absolute;left:0;top:0;height:100%;border-radius:4px;background:var(--accent)}
+.bar i.gap{background:var(--warn)}
+.bar em{position:absolute;top:-3px;width:2px;height:22px;background:var(--ink)}
+.bar u{position:absolute;top:19px;width:0;height:0;border:5px solid transparent;border-bottom:7px solid var(--blue);border-top:0;margin-left:-5px;text-decoration:none}
+.st{font-size:13px;font-weight:700;text-align:right}
+.st.ok{color:var(--accent)}.st.gap{color:var(--warn)}
+.st small{display:block;font-weight:400;color:var(--muted)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:12px}
+.flag{margin-top:10px;font-size:14px;color:var(--blue)}
+.plan{list-style:none;margin:0;padding:0}
+.plan li{padding:12px 0;border-top:1px solid var(--line)}
+.plan li:first-child{border-top:0}
+.plan .h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-weight:700}
+.plan .h span{color:var(--warn);font-size:14px}
+.plan p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
+.also{display:flex;flex-wrap:wrap;gap:10px}
+.also div{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 14px;font-size:14px}
+.also b{color:var(--accent)}
+.back{display:inline-block;margin-bottom:18px;color:var(--accent);font-weight:700;text-decoration:none}.back:hover{text-decoration:underline}
+html.in-frame .back{display:none}
+@media (max-width:620px){.g{grid-template-columns:1fr;gap:6px}.st{text-align:left}.bar u{top:19px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">← Back to SkillProof</a>
+  <h1>Skill gap analysis</h1>
+  <p class="lead">Choose a target role, enter what your resume claims and what your quiz verified, and see exactly which skills stand between you and that role.</p>
+  <div class="pick"><label for="role">Target role</label><select id="role"></select><span class="badge" id="top" hidden></span></div>
+  <div class="cards">
+    <div><b class="ring" id="k1">0%</b><span>Role readiness (verified)</span></div>
+    <div><b id="k2">0/0</b><span>Skills at required level</span></div>
+    <div><b id="k3">-</b><span>Biggest gap</span></div>
+    <div><b id="k4">0</b><span>Estimated weeks to close</span></div>
+  </div>
+
+  <h2>Your levels</h2>
+  <p class="sub" id="dataNote"></p>
+  <div class="panel"><div class="inp" id="inp"></div></div>
+
+  <h2>Gap breakdown</h2>
+  <div class="panel">
+    <div id="gaps"></div>
+    <div class="legend"><span>Bar: verified level</span><span>Black line: level the role needs</span><span style="color:var(--blue)">Blue marker: what you claim</span></div>
+    <div class="flag" id="flag"></div>
+  </div>
+
+  <h2>Your action plan</h2>
+  <p class="sub">Largest gap first. Time assumes about 10 points of improvement per week of focused practice.</p>
+  <div class="panel"><ol class="plan" id="plan"></ol></div>
+
+  <h2>Other roles this also helps</h2>
+  <p class="sub">If you close every gap above, these roles gain the most.</p>
+  <div class="also" id="also"></div>
+</div>
+
+<script>
+var ROLES=[
+ {n:"Data analyst",c:"Data and AI",r:"Excel 65, SQL 65, Python 50, Tableau 50, Power BI 45"},
+ {n:"AI/ML engineer",c:"Data and AI",r:"Python 70, ML 65, AI 55"},
+ {n:"Business analyst",c:"Business and ops",r:"Excel 60, SQL 55, Communication 60, Analytics 55"},
+ {n:"Python developer",c:"Software",r:"Python 65, SQL 55, OOP 55, APIs 50"},
+ {n:"Software developer",c:"Software",r:"DSA 65, Python 55, Java 50"},
+ {n:"Data scientist",c:"Data and AI",r:"Python 70, Statistics 65, ML 55"},
+ {n:"UI/UX designer",c:"Design",r:"Figma 65, Design Thinking 55, Canva 45"},
+ {n:"Business development associate",c:"Business and ops",r:"Communication 65, Excel 50"},
+ {n:"Java developer",c:"Software",r:"Java 65, OOP 60, Spring Boot 50"},
+ {n:"Full stack developer",c:"Software",r:"HTML 60, CSS 55, JavaScript 60, React 55"},
+ {n:"Frontend developer",c:"Software",r:"HTML 65, CSS 60, React 60"},
+ {n:"Backend developer",c:"Software",r:"Python 60, Java 55, APIs 60"},
+ {n:"Software testing engineer",c:"Software",r:"Manual Testing 65, Selenium 55"},
+ {n:"Cloud engineer",c:"Cloud and security",r:"AWS 60, Azure 50"},
+ {n:"Cybersecurity analyst",c:"Cloud and security",r:"Networking 65, Security 60"},
+ {n:"Technical support associate",c:"Cloud and security",r:"Communication 55, Networking 45, Security 35"},
+ {n:"Product management intern",c:"Business and ops",r:"Analytics 55, Communication 60, Figma 35"},
+ {n:"Research analyst",c:"Business and ops",r:"Excel 55, Analytics 60, Communication 55"},
+ {n:"Operations associate",c:"Business and ops",r:"Excel 55, Communication 55"},
+ {n:"Market research analyst",c:"Business and ops",r:"Analytics 60, Excel 55, Communication 50"},
+ {n:"Digital marketing executive",c:"Marketing and people",r:"Digital Marketing 65, Content Writing 50, Analytics 45"},
+ {n:"HR recruiter",c:"Marketing and people",r:"Recruiting 60, Communication 65"},
+ {n:"Content writer",c:"Marketing and people",r:"Content Writing 70, Digital Marketing 40"}
+];
+ROLES.forEach(function(r){var o={};r.r.split(",").forEach(function(p){p=p.trim();var i=p.lastIndexOf(" ");o[p.slice(0,i)]=+p.slice(i+1)});r.r=o});
+var TOP={"Data analyst":1,"AI/ML engineer":2,"Business analyst":3,"Python developer":4,"Software developer":5,"Data scientist":6,"UI/UX designer":7,"Business development associate":8};
+var TIP={Python:"Build two small projects. Practise exceptions, file handling and writing functions with tests.",SQL:"Practise joins, GROUP BY and window functions on a public dataset until you can answer business questions without hints.",Excel:"Work through pivot tables, lookups and charts on a messy real dataset.",Tableau:"Rebuild one public dashboard, then publish your own with filters.","Power BI":"Import a dataset, model relationships and build a report with DAX measures.",ML:"Train and compare models on a Kaggle-style dataset. Explain your metric choices in a README.",AI:"Study core concepts, then build one small applied project such as a classifier or chatbot.",Statistics:"Revise distributions, hypothesis tests and regression, then apply them to a real dataset.",OOP:"Model a small system with classes, inheritance and interfaces.",APIs:"Build and document one REST API, then call a public one from code.",DSA:"Solve problems by topic: arrays, hashing, trees, graphs. Track your timing.",Java:"Write small programs using collections, streams and exceptions.","Spring Boot":"Build a CRUD service with a database and basic tests.",HTML:"Build three semantic, accessible pages without a framework.",CSS:"Recreate two layouts using flexbox and grid.",JavaScript:"Build a small app using the DOM, fetch and async code.",React:"Build a multi-page app with state, props and an API call.","Manual Testing":"Write test cases and bug reports for a real website.",Selenium:"Automate a login and checkout flow with a simple test framework.",AWS:"Deploy a static site and a small app using core services.",Azure:"Complete the fundamentals path and deploy one small service.",Networking:"Learn the OSI model, TCP/IP and DNS, then trace packets with a free tool.",Security:"Practise basic web vulnerabilities in a safe lab environment.",Figma:"Design one app flow end to end and make it clickable.","Design Thinking":"Run a small user interview and turn findings into a problem statement.",Canva:"Produce a set of posters and social posts in a consistent style.",Communication:"Present a project to peers and write a clear one-page summary.",Analytics:"Define metrics for a product and analyse a sample dataset to answer one question.","Digital Marketing":"Plan and run a small campaign, then report the results.","Content Writing":"Publish three articles and revise them from feedback.",Recruiting:"Practise sourcing, screening calls and writing job descriptions."};
+var S={};
+var seed={Python:[85,70],ML:[70,55],AI:[60,50],Statistics:[60,55],SQL:[70,50],Excel:[55,50],Java:[45,40],DSA:[55,45],Communication:[60,60],OOP:[55,45],Analytics:[45,40],Tableau:[40,35],"Power BI":[20,20]};
+var alias={ML:['Machine Learning'],AI:['Artificial Intelligence'],APIs:['REST APIs','APIs'],HTML:['HTML/CSS'],CSS:['HTML/CSS']};
+var appState=null;
+try{appState=JSON.parse(localStorage.getItem('skillproof-state-v1')||'null')}catch(e){appState=null}
+var evidence=(appState&&appState.evidence)||{},quiz=(appState&&appState.quiz)||{};
+var hasProfileData=Object.keys(evidence).length>0||Object.keys(quiz).length>0;
+function normalized(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')}
+function findSkill(record,name){var names=[name].concat(alias[name]||[]),keys=Object.keys(record||{});for(var i=0;i<names.length;i++){var found=keys.find(function(key){return normalized(key)===normalized(names[i])});if(found)return found}return null}
+Object.keys(TIP).forEach(function(k){var demo=seed[k]||[0,0];if(!hasProfileData){S[k]={c:demo[0],v:demo[1],verifiedFromQuiz:true};return}var e=findSkill(evidence,k),q=findSkill(quiz,k);S[k]={c:e?Number(evidence[e])||0:0,v:q?Number(quiz[q])||0:0,verifiedFromQuiz:!!q}});
+var $=function(i){return document.getElementById(i)};
+var cur=0;
+function fit(r){var k=Object.keys(r.r),t=0;k.forEach(function(s){t+=Math.min(1,S[s].v/r.r[s])});return t/k.length}
+function inputs(){
+ var r=ROLES[cur].r;
+ $("inp").innerHTML=Object.keys(r).map(function(k){
+  return'<div><h4>'+k+' <small>needs '+r[k]+'</small></h4><label>Claimed<input type="range" min="0" max="100" step="5" value="'+S[k].c+'" data-k="'+k+'" data-f="c"><output>'+S[k].c+'</output></label><label>Verified / scenario<input type="range" min="0" max="100" step="5" value="'+S[k].v+'" data-k="'+k+'" data-f="v"><output>'+S[k].v+'</output></label><small>'+(S[k].verifiedFromQuiz?'Loaded from quiz':'No quiz score saved')+'</small></div>'}).join("");
+}
+function analyse(){
+ var role=ROLES[cur],r=role.r,keys=Object.keys(r);
+ var rows=keys.map(function(k){return{k:k,need:r[k],v:S[k].v,c:S[k].c,d:Math.max(0,r[k]-S[k].v)}});
+ var gaps=rows.filter(function(x){return x.d>0}).sort(function(a,b){return b.d-a.d});
+ var total=gaps.reduce(function(a,x){return a+x.d},0);
+ $("k1").textContent=Math.round(fit(role)*100)+"%";
+ $("k2").textContent=(rows.length-gaps.length)+"/"+rows.length;
+ $("k3").textContent=gaps.length?gaps[0].k:"None";
+ $("k4").textContent=gaps.reduce(function(a,x){return a+Math.ceil(x.d/10)},0);
+ $("gaps").innerHTML=rows.map(function(x){
+  var ok=x.d===0;
+  return'<div class="g"><b>'+x.k+'</b><div class="bar" role="img" aria-label="'+x.k+': verified '+x.v+', needs '+x.need+', claimed '+x.c+'"><i class="'+(ok?'':'gap')+'" style="width:'+x.v+'%"></i><em style="left:'+x.need+'%"></em><u style="left:'+x.c+'%"></u></div><div class="st '+(ok?'ok':'gap')+'">'+(ok?'Requirement met':x.d+' points short')+'<small>Verified '+x.v+' · needs '+x.need+'</small></div></div>'}).join("");
+ var over=rows.filter(function(x){return x.c-x.v>=20}).map(function(x){return x.k+" (claimed "+x.c+", verified "+x.v+")"});
+ var hid=rows.filter(function(x){return x.v-x.c>=20}).map(function(x){return x.k});
+ $("flag").innerHTML=(over.length?'Overclaimed: '+over.join(", ")+'. Recruiters may test these in interviews.<br>':'')+(hid.length?'Hidden strength: '+hid.join(", ")+'. Add it to your resume.':'')||(over.length||hid.length?'':'Your claims match your verified levels for this role.');
+ $("plan").innerHTML=gaps.length?gaps.map(function(x,i){return'<li><div class="h"><b>'+(i+1)+'. '+x.k+'</b><span>'+x.v+' to '+x.need+' · about '+Math.ceil(x.d/10)+' wk</span></div><p>'+TIP[x.k]+'</p></li>'}).join(""):'<li>You meet every requirement for this role. Apply now and keep your projects visible on your resume.</li>';
+ var t=$("top");if(TOP[role.n]){t.hidden=false;t.textContent="Top pick "+TOP[role.n]}else t.hidden=true;
+ var after={};Object.keys(S).forEach(function(k){after[k]=S[k].v});
+ keys.forEach(function(k){after[k]=Math.max(after[k],r[k])});
+ var gains=ROLES.map(function(o,i){if(i===cur)return null;var a=0,b=0,ks=Object.keys(o.r);ks.forEach(function(s){b+=Math.min(1,S[s].v/o.r[s]);a+=Math.min(1,after[s]/o.r[s])});return{n:o.n,from:Math.round(b/ks.length*100),to:Math.round(a/ks.length*100)}}).filter(function(x){return x&&x.to>x.from}).sort(function(a,b){return(b.to-b.from)-(a.to-a.from)}).slice(0,6);
+ $("also").innerHTML=gains.length?gains.map(function(g){return'<div>'+g.n+': '+g.from+'% to <b>'+g.to+'%</b></div>'}).join(""):'<div>No other roles share these skills. Pick a related role to compare.</div>';
+}
+$("role").innerHTML=ROLES.map(function(r,i){return'<option value="'+i+'">'+r.n+'</option>'}).join("");
+$("role").onchange=function(){cur=+this.value;inputs();analyse()};
+document.addEventListener("input",function(e){var i=e.target;if(i.dataset.k){S[i.dataset.k][i.dataset.f]=+i.value;if(i.dataset.f==='v')S[i.dataset.k].verifiedFromQuiz=false;i.nextElementSibling.textContent=i.value;analyse()}});
+$("dataNote").textContent=hasProfileData?'Loaded saved resume evidence and quiz results from SkillProof. Skills without a quiz score are marked not tested. Slider changes are planning scenarios only.':'Demo values are shown because this SkillProof profile has no saved resume evidence or quiz scores yet. Upload a resume and complete quizzes to populate it. Slider changes are planning scenarios only.';
+inputs();analyse();
+function publishHeight(){if(window.parent!==window)window.parent.postMessage({type:'skillproof-gap-height',height:document.documentElement.scrollHeight},window.location.origin)}
+if(window.parent!==window){new ResizeObserver(publishHeight).observe(document.body);window.addEventListener('load',publishHeight);requestAnimationFrame(publishHeight)}
+</script>
+</body>
+</html>

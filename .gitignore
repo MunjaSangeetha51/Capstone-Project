@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.py[cod]
+**/.venv/
+**/venv/
+**/node_modules/
+.pytest_cache/
+.idea/
+.vscode/
+
+# Local runtime data and generated models
+llm_cache.db
+job_postings.json
+evaluation/*.joblib
+skillproof.zip
+frontend/react-build/
