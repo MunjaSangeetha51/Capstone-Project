@@ -28,6 +28,10 @@ jobs:
         working-directory: frontend-react
       - run: npm run build
         working-directory: frontend-react
+      - name: Include legacy feature pages
+        run: |
+          mkdir -p frontend/react-build/frontend
+          cp frontend/*.html frontend/*.js frontend/*.csv frontend/react-build/frontend/
       - uses: actions/configure-pages@v5
         with:
           enablement: true
