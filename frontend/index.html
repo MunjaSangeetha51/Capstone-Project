@@ -689,7 +689,7 @@ leverage(){
     <div class="card"><h3>📈 Unlock simulator</h3><p class="mut">Ready Now count as you prove skills in ranked order:</p>
     ${A.simulation.map((s,i)=>`<div class="bar"><span style="width:190px">${i?'+ '+s.skill:'Today'}</span><div class="track"><div class="fill" style="width:${s.ready/mx*100}%;background:${COLORS[i%6]}"></div></div><b>${s.ready}</b></div>`).join('')}</div>`;
 },
-gap(){ return `<div class="card gap-embed-card"><iframe id="skillGapEmbed" title="Skill Gap Analysis" src="/skillproof-gap-analysis.html" loading="eager"></iframe></div>`; },
+gap(){ return `<div class="card gap-embed-card"><iframe id="skillGapEmbed" title="Skill Gap Analysis" src="./skillproof-gap-analysis.html" loading="eager"></iframe></div>`; },
   roadmap(){ return renderCareerRoadmap(); }};
 
 async function saveProfile(){
